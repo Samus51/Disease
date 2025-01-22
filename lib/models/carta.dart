@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-enum TipoCarta { curacion, virus, especial }
+enum TipoCarta { curacion, virus, especial, organo }
+
+enum TipoOrgano { corazon, cerebro, hueso, estomago }
 
 enum TipoEspecial {
   contagio,
@@ -52,6 +54,9 @@ class Carta {
   // Método para obtener la imagen de la carta
   AssetImage obtenerImagen() {
     switch (_tipo) {
+      case TipoCarta.organo:
+        return _obtenerImagenOrgano();
+
       case TipoCarta.curacion:
         return _obtenerImagenCuracion();
       case TipoCarta.virus:
@@ -104,4 +109,21 @@ class Carta {
   }
 
   String get descripcionCompleta => "$tipo: $descripcion (Órgano: $organo)";
+  
+  AssetImage _obtenerImagenOrgano() {
+        switch (_organo.toLowerCase()) {
+      case 'cerebro':
+        return AssetImage('assets/images/organo_cerebro.png');
+      case 'corazón':
+        return AssetImage('assets/images/organo_corazon.png');
+      case 'estomago':
+        return AssetImage('assets/images/organo_estomago.png');
+      case 'hueso':
+        return AssetImage('assets/images/organo_hueso.png');
+      default:
+        return AssetImage(
+            'assets/images/carta_parte_trasera.png'); // Imagen por defecto
+    }
+
+  }
 }

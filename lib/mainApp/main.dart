@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: const CartasScreen(),
     );
   }
@@ -26,9 +27,7 @@ class CartasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Prueba de Cartas'),
-      ),
+     
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: CartasWidget(),

@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 
+import 'jugador.dart';
+
 enum TipoCarta { curacion, virus, especial, organo }
 
 enum TipoOrgano { corazon, cerebro, hueso, estomago }
+
+enum EstadoOrgano { muerto, infectado, sano, vacunado, inmune }
 
 enum TipoEspecial {
   contagio,
@@ -67,7 +71,38 @@ class Carta {
     }
   }
 
+  // Método para aplicar curación
+  void cartaCuracion(Jugador jugador) {
+    if (tipo == TipoCarta.curacion) {
+      // Lógica para curar un órgano
+      print('Usando carta de curación en $organo: $descripcion');
+
+      // Seleccionar un órgano del jugador al que aplicar la curación
+      String organoSeleccionado = jugador.seleccionarOrgano();
+
+      // Verificar que el órgano seleccionado es del tipo adecuado
+      if (organoSeleccionado.toLowerCase() == organo.toLowerCase()) {
+        // Aplicar la curación al órgano del jugador
+        jugador.aplicarCuracion(organoSeleccionado);
+        print('Curación aplicada al órgano: $organoSeleccionado');
+      } else {
+        print(
+            'No puedes curar el órgano $organoSeleccionado con esta carta. Debes seleccionar el órgano correspondiente.');
+      }
+    }
+  }
+
+  // Método para cartas de tipo "virus"
+  void cartaVirus() {
+    if (tipo == TipoCarta.virus) {
+      // Lógica para aplicar el virus
+      print('Aplicando virus en $organo: $descripcion');
+      // Aquí agregarías la lógica para aplicar el virus
+    }
+  }
+
   // Cargar imagen de curación
+
   AssetImage _obtenerImagenCuracion() {
     switch (_organo.toLowerCase()) {
       case 'cerebro':
@@ -109,9 +144,9 @@ class Carta {
   }
 
   String get descripcionCompleta => "$tipo: $descripcion (Órgano: $organo)";
-  
+
   AssetImage _obtenerImagenOrgano() {
-        switch (_organo.toLowerCase()) {
+    switch (_organo.toLowerCase()) {
       case 'cerebro':
         return AssetImage('assets/images/organo_cerebro.png');
       case 'corazón':
@@ -124,6 +159,5 @@ class Carta {
         return AssetImage(
             'assets/images/carta_parte_trasera.png'); // Imagen por defecto
     }
-
   }
 }

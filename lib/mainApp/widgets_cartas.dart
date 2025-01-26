@@ -1,7 +1,13 @@
+// ignore_for_file: avoid_print
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../models/carta.dart';
 import '../models/carta_especial.dart';
+import '../models/baraja.dart';
+import '../models/organo.dart';
 
 class CartasWidget extends StatefulWidget {
   const CartasWidget({super.key});
@@ -11,228 +17,451 @@ class CartasWidget extends StatefulWidget {
 }
 
 class _CartasWidgetState extends State<CartasWidget> {
+  int?
+      cartaSeleccionadaIndexJugador; // Índice de la carta seleccionada por el jugador
+  int?
+      cartaSeleccionadaIndexOponente; // Índice de la carta seleccionada por el oponente
+  int?
+      organoSeleccionadoIndexJugador; // Índice del órgano seleccionado por el jugador
+  int?
+      organoSeleccionadoIndexOponente; // Índice del órgano seleccionado por el oponente
+
+  bool modoSeleccionAvanzada = true; // Modo avanzado para la selección
+
+  // Crear la baraja con las cartas generadas
+  Baraja baraja = Baraja(cartas: Baraja.generarMazo());
   // Lista de cartas del jugador
-    String? cartaSeleccionada;
-
   List<Carta> cartasJugador = [
-    Carta(tipo: TipoCarta.curacion, organo: "corazón", descripcion: "Curación para el corazón"),
-    Carta(tipo: TipoCarta.virus, organo: "cerebro", descripcion: "Virus para el cerebro"),
-    CartaEspecial(tipoEspecial: TipoEspecial.contagio, descripcion: "Intercambia una carta con el oponente"),
+    Carta(
+        tipo: TipoCarta.curacion,
+        organo: "corazón",
+        descripcion: "Curación para el corazón"),
+    Carta(
+        tipo: TipoCarta.virus,
+        organo: "corazón",
+        descripcion: "Virus para el corazon"),
+    CartaEspecial(
+        tipoEspecial: TipoEspecial.contagio,
+        descripcion: "Intercambia una carta con el oponente"),
   ];
-
   List<Carta> cartasJugadorOrganos = [
-    Carta(tipo: TipoCarta.organo, organo: "corazón", descripcion: "Curación para el corazón"),
-    Carta(tipo: TipoCarta.organo, organo: "hueso", descripcion: "Curación para el hueso"),
-    Carta(tipo: TipoCarta.organo, organo: "hueso", descripcion: "Organo hueso"),
-    Carta(tipo: TipoCarta.organo, organo: "estomago", descripcion: "Organo hueso"),
-
+    Organo(
+      organo: "hueso",
+      descripcion: "Organo hueso",
+      tipoOrgano: TipoOrgano.hueso,
+      tipo: TipoCarta.organo,
+    ),
+    Organo(
+        organo: "corazón",
+        descripcion: "Organo corazón",
+        tipoOrgano: TipoOrgano.corazon,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.vacunado),
+    Organo(
+      organo: "cerebro",
+      descripcion: "Organo cerebro",
+      tipoOrgano: TipoOrgano.cerebro,
+      tipo: TipoCarta.organo,
+    ),
+    Organo(
+      organo: "estomago",
+      descripcion: "Organo estomago",
+      tipoOrgano: TipoOrgano.estomago,
+      tipo: TipoCarta.organo,
+    ),
   ];
 
   List<Carta> cartasOponenteOrganos = [
-    Carta(tipo: TipoCarta.organo, organo: "corazón", descripcion: "Curación para el corazón"),
-    Carta(tipo: TipoCarta.organo, organo: "cerebro", descripcion: "Organo hueso"),
-    Carta(tipo: TipoCarta.organo, organo: "hueso", descripcion: "Organo hueso"),
-    Carta(tipo: TipoCarta.organo, organo: "estomago", descripcion: "Organo hueso"),
-
+    Organo(
+      organo: "hueso",
+      descripcion: "Organo hueso",
+      tipoOrgano: TipoOrgano.hueso,
+      tipo: TipoCarta.organo,
+    ),
+    Organo(
+      organo: "corazón",
+      descripcion: "Organo corazón",
+      tipoOrgano: TipoOrgano.corazon,
+      tipo: TipoCarta.organo,
+    ),
+    Organo(
+      organo: "cerebro",
+      descripcion: "Organo cerebro",
+      tipoOrgano: TipoOrgano.cerebro,
+      tipo: TipoCarta.organo,
+    ),
   ];
 
   // Lista de cartas del oponente
   List<Carta> cartasOponente = [
-    Carta(tipo: TipoCarta.curacion, organo: "estómago", descripcion: "Curación para el estómago"),
-    Carta(tipo: TipoCarta.virus, organo: "estomago", descripcion: "Virus para el estomago"),
-    CartaEspecial(tipoEspecial: TipoEspecial.errorMedico, descripcion: "Intercambia una carta con el oponente"),
+    Carta(
+        tipo: TipoCarta.curacion,
+        organo: "estómago",
+        descripcion: "Curación para el estómago"),
+    Carta(
+        tipo: TipoCarta.virus,
+        organo: "estomago",
+        descripcion: "Virus para el estomago"),
+    CartaEspecial(
+        tipoEspecial: TipoEspecial.errorMedico,
+        descripcion: "Intercambia una carta con el oponente"),
   ];
 
   double cartaSize = 70;
 
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        // Fila con el mazo de cartas alineado a la izquierda y las cartas del oponente centradas
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start, // Alineación a la izquierda para el mazo
-          children: [
-            _mazoDeCartas(), // Mazo de cartas (alineado a la izquierda)
-            SizedBox(width: 20), // Espacio entre el mazo y las cartas del oponente
-          ],
-        ),
-        _construirFilaCartas(cartasOponente, false), // Cartas del oponente (centradas)
-        _construirFilaCartas(cartasOponenteOrganos, false), // Cartas del oponente (centradas)
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Fondo negro sólido
+          Positioned.fill(
+            child: Container(
+              color: Colors.black, // Fondo negro por si la imagen no cubre
+            ),
+          ),
 
-        // Cartas del jugador en la parte inferior
-        SizedBox(height: 200), // Espaciado entre las cartas del oponente y las del jugador
-        _construirFilaCartas(cartasJugadorOrganos, true), // Organos del jugador
-        _construirFilaCartas(cartasJugador, true), // Cartas del jugador
-      ],
+          // Imagen de fondo opaca, ajustada sin márgenes
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.5, // Nivel de opacidad
+              child: Image.asset(
+                'assets/images/fondo_disease.png',
+                fit: BoxFit.cover, // Asegura que cubra todo el espacio
+              ),
+            ),
+          ),
+
+          // Contenido principal
+          SafeArea(
+            // Asegura que el contenido no se meta debajo de la barra de estado
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _mazoDeCartas(),
+                    SizedBox(width: 20),
+                  ],
+                ),
+                _construirFilaCartas(cartasOponente, false, false),
+                _construirFilaCartas(cartasOponenteOrganos, false, true),
+                SizedBox(height: 180),
+                _construirFilaCartas(cartasJugadorOrganos, true, true),
+                _construirFilaCartas(cartasJugador, true, false),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  // Método para construir las filas de cartas
-  Widget _construirFilaCartas(List<Carta> cartas, bool esJugador) {
+  Widget _construirFilaCartas(
+      List<Carta> cartas, bool esJugador, bool esOrgano) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // Alineación centrada horizontalmente
+        mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(cartas.length, (index) {
+          final carta = cartas[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Draggable<String>(
-              data: index.toString(),
-              feedback: _construirCarta(cartas[index], index, esJugador),
-              childWhenDragging: Opacity(
-                opacity: 0.5,
-                child: _construirCarta(cartas[index], index, esJugador),
-              ),
-              child: DragTarget<String>(
-                onAcceptWithDetails: (details) {
-                  setState(() {
-                    final draggedIndex = int.parse(details.data);
-                    final temp = cartas[index];
-                    cartas[index] = cartas[draggedIndex];
-                    cartas[draggedIndex] = temp;
-                  });
-                },
-                builder: (context, candidateData, rejectedData) {
-                  return _construirCarta(cartas[index], index, esJugador);
-                },
-              ),
-            ),
+            child: esJugador
+                ? _construirCarta(
+                    carta, index, esOrgano, esJugador) // Cartas del jugador
+                : _construirCartaOponente(
+                    carta, index, esOrgano), // Cartas del oponente
           );
         }),
       ),
     );
   }
 
-  int? cartaSeleccionadaIndex;
+  // Para las cartas del jugador
+  Widget _construirCarta(
+      Carta carta, int index, bool esOrgano, bool esJugador) {
+    bool esSeleccionada = esOrgano
+        ? organoSeleccionadoIndexJugador == index
+        : cartaSeleccionadaIndexJugador == index;
 
-Widget _construirCarta(Carta carta, int index, bool esJugador) {
-  bool esSeleccionada = cartaSeleccionadaIndex == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (modoSeleccionAvanzada || esJugador) {
+            if (esOrgano) {
+              organoSeleccionadoIndexJugador =
+                  esSeleccionada ? null : index; // Alternar selección
+            } else {
+              cartaSeleccionadaIndexJugador =
+                  esSeleccionada ? null : index; // Alternar selección
+            }
+          }
+        });
+      },
+      onLongPressStart: (details) {
+        _mostrarMenuEmergente(context, carta, details.globalPosition);
+      },
+      child: esOrgano
+          ? _disenoOrgano(carta as Organo,
+              esSeleccionada) // Aquí llamamos _disenoOrgano si la carta es un órgano
+          : _disenoCarta(
+              carta, esSeleccionada), // Si no es órgano, usamos _disenoCarta
+    );
+  }
 
-  return GestureDetector(
-    onTap: () {
-      setState(() {
-        cartaSeleccionada = carta.descripcionCompleta;
-        cartaSeleccionadaIndex = esSeleccionada ? null : index;
-        cartaSize = esSeleccionada ? 70 : 150;
-      });
-    },
-    onLongPressStart: (details) {
-      // Mostrar el menú emergente al hacer un toque largo
-      _mostrarMenuEmergente(context, carta, details.globalPosition);
-    },
-    child: Draggable<String>(
-      data: index.toString(),
-      feedback: _disenoCarta(carta),
-      childWhenDragging: Opacity(
-        opacity: 0.5,
-        child: _disenoCarta(carta),
-      ),
-      child: DragTarget<String>(
-        onAcceptWithDetails: (details) {
-          setState(() {
-            final draggedIndex = int.parse(details.data);
-            final temp = cartasJugador[index];
-            cartasJugador[index] = cartasJugador[draggedIndex];
-            cartasJugador[draggedIndex] = temp;
-          });
-        },
-        builder: (context, candidateData, rejectedData) {
-          return _disenoCarta(carta);
-        },
-      ),
-    ),
-  );
-}
+  // Para las cartas del oponente
+  Widget _construirCartaOponente(Carta carta, int index, bool esOrgano) {
+    bool esSeleccionada = esOrgano
+        ? organoSeleccionadoIndexOponente == index
+        : cartaSeleccionadaIndexOponente == index;
 
-Widget _disenoCarta(Carta carta) {
-  return AnimatedContainer(
-    duration: const Duration(milliseconds: 200),
-    width: cartaSize,
-    height: cartaSize * 1.4,
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: carta.obtenerImagen(),
-        fit: BoxFit.cover,
-      ),
-      borderRadius: BorderRadius.circular(8),
-    ),
-  );
-}
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (modoSeleccionAvanzada) {
+            if (esOrgano) {
+              organoSeleccionadoIndexOponente =
+                  esSeleccionada ? null : index; // Alternar selección
+            } else {
+              cartaSeleccionadaIndexOponente =
+                  esSeleccionada ? null : index; // Alternar selección
+            }
+          }
+        });
+      },
+      onLongPressStart: (details) {
+        _mostrarMenuEmergente(context, carta, details.globalPosition);
+      },
+      child: esOrgano
+          ? _disenoOrgano(carta as Organo,
+              esSeleccionada) // Aquí llamamos _disenoOrgano si la carta es un órgano
+          : _disenoCarta(
+              carta, esSeleccionada), // Si no es órgano, usamos _disenoCarta
+    );
+  }
 
-void _mostrarMenuEmergente(BuildContext context, Carta carta, Offset position) async {
-  final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-
-  await showMenu(
-    context: context,
-    position: RelativeRect.fromLTRB(
-      position.dx,
-      position.dy,
-      overlay.size.width - position.dx,
-      overlay.size.height - position.dy,
-    ),
-    color: Colors.transparent,
-    items: [
-      PopupMenuItem<int>(
-        value: 1,
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Icon(Icons.add, color: Colors.white),
-          ),
+  // Diseño de la carta, mostrando el borde si está seleccionada
+  Widget _disenoCarta(Carta carta, bool esSeleccionada) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      width: 70,
+      height: 98,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: carta.obtenerImagen(),
+          fit: BoxFit.cover,
         ),
+        borderRadius: BorderRadius.circular(8),
+        border: esSeleccionada
+            ? Border.all(
+                color: Colors.yellow,
+                width: 4) // Borde amarillo si está seleccionada
+            : null,
       ),
-      PopupMenuItem<int>(
-        value: 2,
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Icon(Icons.remove, color: Colors.white),
-          ),
-        ),
-      ),
-    ],
-  ).then((value) {
-    if (value == 1) {
-      print('Acción 1 seleccionada para la carta ${carta.descripcionCompleta}');
-    } else if (value == 2) {
-      print('Acción 2 seleccionada para la carta ${carta.descripcionCompleta}');
+    );
+  }
+
+  Widget _disenoOrgano(Organo organo, bool esSeleccionado) {
+    // Determina el color del borde según el estado del órgano
+    Color bordeColor;
+    switch (organo.estado) {
+      case EstadoOrgano.infectado:
+        bordeColor = Colors.red; // Rojo para infectado
+        break;
+      case EstadoOrgano.inmune:
+        bordeColor = Colors.blue; // Azul para inmune
+        break;
+      case EstadoOrgano.vacunado:
+        bordeColor = Colors.green; // Verde para vacunado
+        break;
+      default:
+        bordeColor = Colors.transparent; // Sin borde si no tiene estado
     }
-  });
-}
 
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      width: 70,
+      height: 98,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: organo.obtenerImagen(),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(8),
+        border: esSeleccionado
+            ? Border.all(
+                color: Colors.yellow,
+                width: 4) // Borde amarillo si está seleccionado
+            : Border.all(color: bordeColor, width: 4), // Borde del estado
+      ),
+    );
+  }
 
-  // Modificación de _mazoDeCartas para alinearlo horizontalmente a la izquierda
   _mazoDeCartas() {
     return SizedBox(
-      width: 80, // Ancho del SizedBox para limitar el tamaño de la pila
-      height: 100, // Alto del SizedBox para limitar el tamaño de la pila
-      child: Stack(
-        alignment: Alignment.centerLeft, // Alinea las cartas a la izquierda
-        children: List.generate(5, (index) {
-          return Positioned(
-            left: index * 2.0,
-            top: index * 2.0,
-            child: Image.asset(
-              'assets/images/carta_parte_trasera.png',
-              width: 80,
-              height: 80,
-            ),
-          );
-        }),
+      width: 80,
+      height: 100,
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            if (cartasJugador.length < 3) {
+              cartasJugador.add(baraja.cartas[Random().nextInt(62)]);
+              print("Carta añadida");
+            }
+            print("Pila de cartas tocada");
+          });
+        },
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: List.generate(5, (index) {
+            return Positioned(
+              left: index * 2.0,
+              top: index * 2.0,
+              child: Image.asset(
+                'assets/images/carta_parte_trasera.png',
+                width: 80,
+                height: 80,
+              ),
+            );
+          }),
+        ),
       ),
+    );
+  }
+
+  void _mostrarMenuEmergente(
+      BuildContext context, Carta carta, Offset position) {
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        position.dx,
+        position.dy,
+        position.dx + 1,
+        position.dy + 1,
+      ),
+      items: [
+        PopupMenuItem(
+          value: 'eliminar_carta',
+          child: Text('Eliminar carta'),
+          onTap: () {
+            setState(() {
+              // Eliminar la carta seleccionada, si está seleccionada
+              if (cartaSeleccionadaIndexJugador != null) {
+                cartasJugador.removeAt(cartaSeleccionadaIndexJugador!);
+                cartaSeleccionadaIndexJugador = null;
+              }
+            });
+          },
+        ),
+        PopupMenuItem(
+          value: 'usar_carta',
+          child: Text('Usar carta'),
+          onTap: () {
+            setState(() {
+              // Depuración
+              print("Index Jugador: $cartaSeleccionadaIndexJugador");
+              print("Index Oponente: $cartaSeleccionadaIndexOponente");
+              print("Index Organos Jugador: $organoSeleccionadoIndexJugador");
+              print("Index Organos Oponente: $organoSeleccionadoIndexOponente");
+
+              // Verifica si el jugador tiene seleccionada una carta y un órgano
+              if (cartaSeleccionadaIndexJugador != null &&
+                  organoSeleccionadoIndexJugador != null) {
+                final cartaJugadorSeleccionada =
+                    cartasJugador[cartaSeleccionadaIndexJugador!];
+                final organoJugadorSeleccionado =
+                    cartasJugadorOrganos[organoSeleccionadoIndexJugador!];
+
+                // Lógica de CURACION
+                if (cartaJugadorSeleccionada.tipo == TipoCarta.curacion) {
+                  if (organoJugadorSeleccionado is Organo) {
+                    final organoPlayer = organoJugadorSeleccionado;
+                    print(
+                        "Estado del órgano antes de curar: ${organoPlayer.estadoOrgano}");
+
+                    switch (organoPlayer.estado) {
+                      case EstadoOrgano.sano:
+                        organoPlayer.estado = EstadoOrgano.vacunado;
+                        print(
+                            "El órgano ha sido curado y ahora está ${organoPlayer.estadoOrgano}");
+                        break;
+                      case EstadoOrgano.infectado:
+                        organoPlayer.estado = EstadoOrgano.sano;
+                        print("El órgano ha sido curado.");
+                        break;
+                      case EstadoOrgano.vacunado:
+                        organoPlayer.estado = EstadoOrgano.inmune;
+                        print("El órgano ahora es inmune.");
+                        break;
+                      case EstadoOrgano.inmune:
+                        print("El órgano ya está inmune.");
+                        break;
+                      case EstadoOrgano.muerto:
+                        print("El órgano ya está muerto.");
+                        break;
+                    }
+                  }
+                }
+              }
+              // Verifica si el jugador tiene seleccionada una carta y el oponente tiene un órgano seleccionado
+              else if (cartaSeleccionadaIndexJugador != null &&
+                  organoSeleccionadoIndexOponente != null) {
+                final cartaJugadorSeleccionada =
+                    cartasJugador[cartaSeleccionadaIndexJugador!];
+                final organoOponenteSeleccionada =
+                    cartasOponenteOrganos[organoSeleccionadoIndexOponente!];
+
+                // Lógica de INFECTAR
+                if (cartaJugadorSeleccionada.tipo == TipoCarta.virus) {
+                  print(
+                      "Carta de virus seleccionada: ${cartaJugadorSeleccionada.organo}");
+                  if (cartaJugadorSeleccionada.organo ==
+                      organoOponenteSeleccionada.organo) {
+                    if (organoOponenteSeleccionada is Organo) {
+                      final organoOponente = organoOponenteSeleccionada;
+                      print(
+                          "Estado del órgano antes de infectar: ${organoOponente.estadoOrgano}");
+
+                      switch (organoOponente.estado) {
+                        case EstadoOrgano.sano:
+                          organoOponente.estado = EstadoOrgano.infectado;
+                          print(
+                              "El órgano ha sido infectado y ahora está ${organoOponente.estadoOrgano}");
+                          break;
+                        case EstadoOrgano.infectado:
+                          organoOponente.estado = EstadoOrgano.muerto;
+                          print("El órgano ha muerto.");
+                          cartasOponenteOrganos
+                              .removeAt(cartaSeleccionadaIndexOponente!);
+                          break;
+                        case EstadoOrgano.vacunado:
+                          print(
+                              "El órgano está vacunado, no se puede infectar.");
+                          break;
+                        case EstadoOrgano.inmune:
+                          print(
+                              "El órgano ya está inmune, no se puede infectar.");
+                          break;
+                        case EstadoOrgano.muerto:
+                          print("El órgano ya está muerto.");
+                          break;
+                      }
+                    }
+                  }
+                }
+              }
+
+              // Resetea los índices después de realizar la acción
+              cartaSeleccionadaIndexJugador = null;
+              cartaSeleccionadaIndexOponente = null;
+              organoSeleccionadoIndexJugador = null;
+              organoSeleccionadoIndexOponente = null;
+            });
+          },
+        )
+      ],
     );
   }
 }

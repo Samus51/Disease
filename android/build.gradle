@@ -12,6 +12,17 @@ subprojects {
 subprojects {
     project.evaluationDependsOn(":app")
 }
+buildscript {
+    repositories{
+        google()
+        mavenCentral()
+    }
+  dependencies {
+    classpath 'com.google.gms:google-services:4.3.15' // O la versión más reciente
+}  
+}
+
+
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir

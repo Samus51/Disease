@@ -33,7 +33,7 @@ class Baraja {
     List<Carta> mazo = [];
 
     // Definir los órganos disponibles
-    List<String> organos = ["Corazón", "Cerebro", "Huesos", "Estómago"];
+    List<String> organos = ["Corazon", "Cerebro", "Hueso", "Estomago"];
 
     // Generar cartas de virus y curación para cada órgano
     for (String organo in organos) {
@@ -58,7 +58,7 @@ class Baraja {
       // 5 cartas de órgano específicas
       for (int i = 0; i < 5; i++) {
         mazo.add(Carta(
-          tipo: TipoCarta.virus,
+          tipo: TipoCarta.organo,
           organo: organo,
           descripcion: "Órgano de $organo",
         ));
@@ -122,7 +122,7 @@ class Baraja {
       } else if (carta.tipo == TipoCarta.curacion) {
         contadorCuracion++;
         // ignore: unrelated_type_equality_checks
-      } else if (carta.tipo == TipoEspecial.values) {
+      } else if (carta.tipo == TipoCarta.especial) {
         contadorEspecial++;
       }
 

@@ -107,9 +107,9 @@ class Carta {
     switch (_organo.toLowerCase()) {
       case 'cerebro':
         return AssetImage('assets/images/cura_cerebro.png');
-      case 'corazón':
+      case 'corazon':
         return AssetImage('assets/images/cura_corazon.png');
-      case 'estómago':
+      case 'estomago':
         return AssetImage('assets/images/cura_estomago.png');
       case 'hueso':
         return AssetImage('assets/images/cura_hueso.png');
@@ -124,7 +124,7 @@ class Carta {
     switch (_organo.toLowerCase()) {
       case 'cerebro':
         return AssetImage('assets/images/virus_cerebro.png');
-      case 'corazón':
+      case 'corazon':
         return AssetImage('assets/images/virus_corazon.png');
       case 'estomago':
         return AssetImage('assets/images/virus_estomago.png');
@@ -149,7 +149,7 @@ class Carta {
     switch (_organo.toLowerCase()) {
       case 'cerebro':
         return AssetImage('assets/images/organo_cerebro.png');
-      case 'corazón':
+      case 'corazon':
         return AssetImage('assets/images/organo_corazon.png');
       case 'estomago':
         return AssetImage('assets/images/organo_estomago.png');

@@ -26,19 +26,19 @@ class _CartasWidgetState extends State<CartasWidget> {
   int?
       organoSeleccionadoIndexOponente; // Índice del órgano seleccionado por el oponente
 
-  bool modoSeleccionAvanzada = true; // Modo avanzado para la selección
+  bool modoSeleccionAvanzada = true;
 
   // Crear la baraja con las cartas generadas
   Baraja baraja = Baraja(cartas: Baraja.generarMazo());
   // Lista de cartas del jugador
   List<Carta> cartasJugador = [
     Carta(
-        tipo: TipoCarta.curacion,
-        organo: "corazón",
-        descripcion: "Curación para el corazón"),
+        tipo: TipoCarta.virus,
+        organo: "cerebro",
+        descripcion: "virus para el cerebro"),
     Carta(
         tipo: TipoCarta.virus,
-        organo: "corazón",
+        organo: "corazon",
         descripcion: "Virus para el corazon"),
     CartaEspecial(
         tipoEspecial: TipoEspecial.contagio,
@@ -52,7 +52,7 @@ class _CartasWidgetState extends State<CartasWidget> {
       tipo: TipoCarta.organo,
     ),
     Organo(
-        organo: "corazón",
+        organo: "corazon",
         descripcion: "Organo corazón",
         tipoOrgano: TipoOrgano.corazon,
         tipo: TipoCarta.organo,
@@ -79,7 +79,7 @@ class _CartasWidgetState extends State<CartasWidget> {
       tipo: TipoCarta.organo,
     ),
     Organo(
-      organo: "corazón",
+      organo: "corazon",
       descripcion: "Organo corazón",
       tipoOrgano: TipoOrgano.corazon,
       tipo: TipoCarta.organo,
@@ -96,7 +96,7 @@ class _CartasWidgetState extends State<CartasWidget> {
   List<Carta> cartasOponente = [
     Carta(
         tipo: TipoCarta.curacion,
-        organo: "estómago",
+        organo: "estomago",
         descripcion: "Curación para el estómago"),
     Carta(
         tipo: TipoCarta.virus,
@@ -434,7 +434,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                           organoOponente.estado = EstadoOrgano.muerto;
                           print("El órgano ha muerto.");
                           cartasOponenteOrganos
-                              .removeAt(cartaSeleccionadaIndexOponente!);
+                              .removeAt(organoSeleccionadoIndexOponente!);
                           break;
                         case EstadoOrgano.vacunado:
                           print(

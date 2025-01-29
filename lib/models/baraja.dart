@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/mano.dart';
@@ -27,6 +29,13 @@ class Baraja {
     // Retornar la mano repartida
     return mano;
   }
+
+ // Método para agregar las cartas de los descartes a la baraja
+  void reponerCartas(List<Carta> cartasADescartar) {
+    cartas.addAll(cartasADescartar);
+  }
+
+
 
   // Método para generar el mazo
   static List<Carta> generarMazo() {
@@ -104,6 +113,18 @@ class Baraja {
     mazo.shuffle();
 
     return mazo;
+  }
+
+  Carta darCarta(Baraja mazo) {
+    return mazo._cartas[Random().nextInt(mazo._cartas.length)];
+  }
+
+  List<Carta> darVariasCartas(Baraja mazo, int cartasAPedir) {
+    List<Carta> nuevaMano = [];
+    for (int i = 0; i < cartasAPedir; i++) {
+      nuevaMano.add(mazo._cartas[Random().nextInt(mazo._cartas.length)]);
+    }
+    return nuevaMano;
   }
 
   // Getter para acceder a las cartas

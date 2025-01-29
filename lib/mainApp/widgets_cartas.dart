@@ -42,15 +42,15 @@ class _CartasWidgetState extends State<CartasWidget> {
         descripcion: "Virus para el corazon"),
     CartaEspecial(
         tipoEspecial: TipoEspecial.contagio,
-        descripcion: "Intercambia una carta con el oponente"),
+        descripcion: "Contagia a los demas organos del oponente"),
   ];
   List<Carta> cartasJugadorOrganos = [
     Organo(
-      organo: "hueso",
-      descripcion: "Organo hueso",
-      tipoOrgano: TipoOrgano.hueso,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "hueso",
+        descripcion: "Organo hueso",
+        tipoOrgano: TipoOrgano.hueso,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.sano),
     Organo(
         organo: "corazon",
         descripcion: "Organo corazón",
@@ -58,38 +58,38 @@ class _CartasWidgetState extends State<CartasWidget> {
         tipo: TipoCarta.organo,
         estado: EstadoOrgano.vacunado),
     Organo(
-      organo: "cerebro",
-      descripcion: "Organo cerebro",
-      tipoOrgano: TipoOrgano.cerebro,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "cerebro",
+        descripcion: "Organo cerebro",
+        tipoOrgano: TipoOrgano.cerebro,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.infectado),
     Organo(
-      organo: "estomago",
-      descripcion: "Organo estomago",
-      tipoOrgano: TipoOrgano.estomago,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "estomago",
+        descripcion: "Organo estomago",
+        tipoOrgano: TipoOrgano.estomago,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.infectado),
   ];
 
   List<Carta> cartasOponenteOrganos = [
     Organo(
-      organo: "hueso",
-      descripcion: "Organo hueso",
-      tipoOrgano: TipoOrgano.hueso,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "hueso",
+        descripcion: "Organo hueso",
+        tipoOrgano: TipoOrgano.hueso,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.sano),
     Organo(
-      organo: "corazon",
-      descripcion: "Organo corazón",
-      tipoOrgano: TipoOrgano.corazon,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "corazon",
+        descripcion: "Organo corazón",
+        tipoOrgano: TipoOrgano.corazon,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.sano),
     Organo(
-      organo: "cerebro",
-      descripcion: "Organo cerebro",
-      tipoOrgano: TipoOrgano.cerebro,
-      tipo: TipoCarta.organo,
-    ),
+        organo: "cerebro",
+        descripcion: "Organo cerebro",
+        tipoOrgano: TipoOrgano.cerebro,
+        tipo: TipoCarta.organo,
+        estado: EstadoOrgano.sano),
   ];
 
   // Lista de cartas del oponente
@@ -192,10 +192,10 @@ class _CartasWidgetState extends State<CartasWidget> {
           if (modoSeleccionAvanzada || esJugador) {
             if (esOrgano) {
               organoSeleccionadoIndexJugador =
-                  esSeleccionada ? null : index; // Alternar selección
+                  organoSeleccionadoIndexJugador == index ? null : index;
             } else {
               cartaSeleccionadaIndexJugador =
-                  esSeleccionada ? null : index; // Alternar selección
+                  cartaSeleccionadaIndexJugador == index ? null : index;
             }
           }
         });
@@ -374,7 +374,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                 final organoJugadorSeleccionado =
                     cartasJugadorOrganos[organoSeleccionadoIndexJugador!];
 
-                // Lógica de CURACION
+                // Lógica de CURACIÓN
                 if (cartaJugadorSeleccionada.tipo == TipoCarta.curacion) {
                   if (organoJugadorSeleccionado is Organo) {
                     final organoPlayer = organoJugadorSeleccionado;
@@ -450,6 +450,107 @@ class _CartasWidgetState extends State<CartasWidget> {
                       }
                     }
                   }
+                }
+              }
+              // Verifica si el jugador tiene seleccionada una carta especial
+              else if (cartaSeleccionadaIndexJugador != null) {
+                final cartaJugadorSeleccionada =
+                    cartasJugador[cartaSeleccionadaIndexJugador!];
+
+                if (cartaJugadorSeleccionada is CartaEspecial) {
+                  // Cast seguro a CartaEspecial y actuamos según el tipo especial
+                  switch (cartaJugadorSeleccionada.tipoEspecial) {
+                    case TipoEspecial.ladronDeOrganos:
+                      // Acción para "Ladrón de órganos"
+                      print("El jugador debe robar dos cartas.");
+                      break;
+
+                    case TipoEspecial.contagio:
+                      // Acción para "Contagio"
+                      List<Organo> organosInfectadosJugador = [];
+                      List<Organo> organosSanosOponente = [];
+
+                      // Obtener órganos infectados del jugador
+                      for (int i = 0; i < cartasJugadorOrganos.length; i++) {
+                        if (cartasJugadorOrganos[i] is Organo) {
+                          Organo organo = cartasJugadorOrganos[i] as Organo;
+                          if (organo.estado == EstadoOrgano.infectado) {
+                            organosInfectadosJugador.add(organo);
+                          }
+                        }
+                      }
+
+                      // Obtener órganos sanos del oponente
+                      for (int i = 0; i < cartasOponenteOrganos.length; i++) {
+                        if (cartasOponenteOrganos[i] is Organo) {
+                          Organo organo = cartasOponenteOrganos[i] as Organo;
+                          if (organo.estado == EstadoOrgano.sano) {
+                            organosSanosOponente.add(organo);
+                          }
+                        }
+                      }
+
+                      // Infectar órganos sanos del oponente y dejar los del jugador sanos, pero solo si coinciden en tipo
+                      for (var organoJugador in organosInfectadosJugador) {
+                        if (organosSanosOponente.isNotEmpty) {
+                          // Filtramos los órganos sanos del oponente que coinciden con el tipo del órgano infectado del jugador
+                          List<Organo> organosCoincidentes =
+                              organosSanosOponente
+                                  .where((organoOponente) =>
+                                      organoOponente.tipoOrgano ==
+                                      organoJugador.tipoOrgano)
+                                  .toList();
+
+                          if (organosCoincidentes.isNotEmpty) {
+                            // Tomamos el primer órgano coincidente del oponente
+                            Organo organoOponente = organosCoincidentes.first;
+
+                            // Infectamos el órgano del oponente
+                            organoOponente.estado = EstadoOrgano.infectado;
+                            print(
+                                "Órgano del oponente (${organoOponente.tipoOrgano}) ha sido infectado.");
+
+                            // Curamos el órgano del jugador
+                            organoJugador.estado = EstadoOrgano.sano;
+                            print(
+                                "Órgano del jugador (${organoJugador.tipoOrgano}) ha sido curado y está sano.");
+
+                            // Eliminamos el órgano sano del oponente de la lista
+                            organosSanosOponente.remove(organoOponente);
+                          } else {
+                            print(
+                                "No hay órganos sanos del tipo ${organoJugador.tipoOrgano} para infectar.");
+                          }
+                        } else {
+                          print("Ya no hay más órganos sanos para infectar.");
+                          break; // Salimos del bucle si no hay más órganos sanos en el oponente
+                        }
+                      }
+
+                      break;
+
+                    case TipoEspecial.errorMedico:
+                      // Acción para "Error médico"
+                      print("Intercambio de cartas con otro jugador.");
+                      break;
+
+                    case TipoEspecial.guanteLatex:
+                      // Acción para "Guante de látex"
+                      print("El jugador puede eliminar una carta.");
+                      break;
+
+                    case TipoEspecial.transplante:
+                      // Acción para "Transplante"
+                      print(
+                          "El jugador puede realizar un transplante de cartas.");
+                      break;
+
+                    default:
+                      // Caso por defecto si no se reconoce el tipo
+                      print("Tipo de carta especial no reconocido.");
+                  }
+                } else {
+                  print("La carta seleccionada no es especial.");
                 }
               }
 

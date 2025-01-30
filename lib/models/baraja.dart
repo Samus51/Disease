@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/mano.dart';
+import 'package:disease/models/organo.dart';
 
 class Baraja {
   final List<Carta> _cartas;
@@ -30,12 +31,10 @@ class Baraja {
     return mano;
   }
 
- // Método para agregar las cartas de los descartes a la baraja
+  // Método para agregar las cartas de los descartes a la baraja
   void reponerCartas(List<Carta> cartasADescartar) {
     cartas.addAll(cartasADescartar);
   }
-
-
 
   // Método para generar el mazo
   static List<Carta> generarMazo() {
@@ -64,13 +63,15 @@ class Baraja {
         ));
       }
 
-      // 5 cartas de órgano específicas
-      for (int i = 0; i < 5; i++) {
-        mazo.add(Carta(
-          tipo: TipoCarta.organo,
-          organo: organo,
-          descripcion: "Órgano de $organo",
-        ));
+      for (var tipo in TipoOrgano.values) {
+        for (int i = 0; i < 5; i++) {
+          mazo.add(Organo(
+            tipo: TipoCarta.organo,
+            organo: tipo.toString().split('.').last,
+            descripcion: "Órgano de ${tipo.toString().split('.').last}",
+            tipoOrgano: tipo,
+          ));
+        }
       }
     }
 

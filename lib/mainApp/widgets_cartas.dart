@@ -31,28 +31,41 @@ class _CartasWidgetState extends State<CartasWidget> {
   // Crear la baraja con las cartas generadas
   Baraja baraja = Baraja(cartas: Baraja.generarMazo());
 
+  Future<(int?, int?)> seleccionarOrgano() async {
+    while (organoSeleccionadoIndexJugador == null ||
+        organoSeleccionadoIndexOponente == null) {
+      await Future.delayed(Duration(
+          milliseconds: 100)); // Espera un poco antes de volver a comprobar
+    }
+    return (organoSeleccionadoIndexJugador!, organoSeleccionadoIndexOponente!);
+  }
+
+  Future<Organo?> seleccionarOrganoParaRobo() async {
+    while (organoSeleccionadoIndexOponente == null) {
+      await Future.delayed(
+          Duration(milliseconds: 100)); // Espera antes de volver a comprobar
+    }
+    return cartasOponenteOrganos[organoSeleccionadoIndexOponente!];
+  }
+
   List<Carta> descartes = [];
 
   List<Carta> cartasJugador = [
-    Carta(
-        tipo: TipoCarta.virus,
-        organo: "cerebro",
-        descripcion: "virus para el cerebro"),
+    Organo(
+        tipo: TipoCarta.organo,
+        organo: "hueso",
+        descripcion: "organo hueso",
+        tipoOrgano: TipoOrgano.hueso,
+        estado: EstadoOrgano.sano),
     Carta(
         tipo: TipoCarta.curacion,
         organo: "estomago",
         descripcion: "Virus para el estomago"),
     CartaEspecial(
-        tipoEspecial: TipoEspecial.errorMedico,
+        tipoEspecial: TipoEspecial.ladronDeOrganos,
         descripcion: "Roba organo del oponente"),
   ];
   List<Organo> cartasJugadorOrganos = [
-    Organo(
-        organo: "hueso",
-        descripcion: "Organo hueso",
-        tipoOrgano: TipoOrgano.hueso,
-        tipo: TipoCarta.organo,
-        estado: EstadoOrgano.sano),
     Organo(
         organo: "corazon",
         descripcion: "Organo corazón",
@@ -128,25 +141,26 @@ class _CartasWidgetState extends State<CartasWidget> {
             ),
           ),
 
-          // Contenido principal
+          // Contenido principal con scroll
           SafeArea(
-            // Asegura que el contenido no se meta debajo de la barra de estado
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    _mazoDeCartas(),
-                    SizedBox(width: 20),
-                  ],
-                ),
-                _construirFilaCartas(cartasOponente, false, false),
-                _construirFilaCartas(cartasOponenteOrganos, false, true),
-                SizedBox(height: 180),
-                _construirFilaCartas(cartasJugadorOrganos, true, true),
-                _construirFilaCartas(cartasJugador, true, false),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      _mazoDeCartas(),
+                      SizedBox(width: 20),
+                    ],
+                  ),
+                  _construirFilaCartas(cartasOponente, false, false),
+                  _construirFilaCartas(cartasOponenteOrganos, false, true),
+                  SizedBox(height: 180),
+                  _construirFilaCartas(cartasJugadorOrganos, true, true),
+                  _construirFilaCartas(cartasJugador, true, false),
+                ],
+              ),
             ),
           ),
         ],
@@ -412,7 +426,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                       print("El órgano ya está muerto.");
                       break;
                   }
-                                }
+                }
               }
               // Verifica si el jugador tiene seleccionada una carta y el oponente tiene un órgano seleccionado
               else if (cartaSeleccionadaIndexJugador != null &&
@@ -445,8 +459,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                             .removeAt(organoSeleccionadoIndexOponente!);
                         break;
                       case EstadoOrgano.vacunado:
-                        print(
-                            "El órgano está vacunado, no se puede infectar.");
+                        print("El órgano está vacunado, no se puede infectar.");
                         break;
                       case EstadoOrgano.inmune:
                         print(
@@ -456,7 +469,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                         print("El órgano ya está muerto.");
                         break;
                     }
-                                    }
+                  }
                 }
               }
               // Verifica si el jugador tiene seleccionada una carta especial
@@ -464,33 +477,48 @@ class _CartasWidgetState extends State<CartasWidget> {
                 final cartaJugadorSeleccionada =
                     cartasJugador[cartaSeleccionadaIndexJugador!];
 
+                if (cartaJugadorSeleccionada is Organo) {
+                  Organo organo = cartaJugadorSeleccionada;
+                  if (!cartasJugadorOrganos.contains(organo)) {
+                    cartasJugadorOrganos.add(organo);
+                  }
+                }
+
                 if (cartaJugadorSeleccionada is CartaEspecial) {
                   // Cast seguro a CartaEspecial y actuamos según el tipo especial
                   switch (cartaJugadorSeleccionada.tipoEspecial) {
                     case TipoEspecial.ladronDeOrganos:
-                      organoSeleccionadoIndexOponente =
-                          Functions.esperarClickEnCarta(cartasOponenteOrganos,
-                              context, organoSeleccionadoIndexOponente);
-
-                      if (organoSeleccionadoIndexOponente != null) {
-                        if (organoSeleccionadoIndexOponente is Organo) {
-                          Organo organoARobar =
-                              organoSeleccionadoIndexOponente as Organo;
-                          // ignore: unrelated_type_equality_checks
-                          if (organoARobar.estadoOrgano !=
-                                  EstadoOrgano.inmune &&
-                              !cartasJugadorOrganos.contains(organoARobar)) {
-                            cartasJugadorOrganos.add(organoARobar);
-                            cartasOponenteOrganos.remove(organoARobar);
-
-                            print(
-                                "Órgano del oponente (${organoARobar.tipoOrgano}) ha sido robado del oponente.");
-                          }
-                        }
-                      }
-
                       print(
-                          "El jugador debe robar un organo del oponente que no tenga y que no sea inmune.");
+                          "El jugador puede robar un órgano de otro jugador.");
+
+                      // Asegúrate de que la función que contiene este código es async
+                      () async {
+                        var (organoOponente) =
+                            await seleccionarOrganoParaRobo();
+
+                        setState(() {
+                          // Verificamos que el órgano no sea inmune
+                          if (organoOponente != null &&
+                              organoOponente.estadoOrgano !=
+                                  EstadoOrgano.inmune &&
+                              !cartasJugadorOrganos.any((organo) =>
+                                  organo.tipoOrgano ==
+                                  organoOponente.tipoOrgano)) {
+                            // Añadimos el órgano robado
+                            cartasJugadorOrganos.add(organoOponente);
+                            cartasOponenteOrganos.remove(organoOponente);
+                            print(
+                                "Órgano robado del oponente: ${organoOponente.tipoOrgano}.");
+                          } else {
+                            print(
+                                "No se puede robar este órgano. Está inmune o ya tienes uno del mismo color.");
+                          }
+                        });
+
+                        print(
+                            "El jugador ha robado un órgano del oponente que no esté inmune y que no tenga el mismo color.");
+                      }(); // Ejecuta la función anónima inmediatamente
+
                       break;
 
                     case TipoEspecial.contagio:
@@ -504,7 +532,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                         if (organo.estado == EstadoOrgano.infectado) {
                           organosInfectadosJugador.add(organo);
                         }
-                                            }
+                      }
 
                       // Obtener órganos sanos del oponente
                       for (int i = 0; i < cartasOponenteOrganos.length; i++) {
@@ -512,7 +540,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                         if (organo.estado == EstadoOrgano.sano) {
                           organosSanosOponente.add(organo);
                         }
-                                            }
+                      }
 
                       // Infectar órganos sanos del oponente y dejar los del jugador sanos, pero solo si coinciden en tipo
                       for (var organoJugador in organosInfectadosJugador) {
@@ -547,7 +575,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                           }
                         } else {
                           print("Ya no hay más órganos sanos para infectar.");
-                          break; // Salimos del bucle si no hay más órganos sanos en el oponente
+                          break;
                         }
                       }
 
@@ -573,15 +601,33 @@ class _CartasWidgetState extends State<CartasWidget> {
                       break;
 
                     case TipoEspecial.transplante:
-                      // Acción para "Transplante"
                       print(
-                          "El jugador puede realizar un transplante de cartas.");
+                          "El jugador puede realizar un trasplante de cartas.");
+
+                      // Asegúrate de que la función que contiene este código es async
+                      () async {
+                        var (organoJugador, organoOponente) =
+                            await seleccionarOrgano();
+
+                        setState(() {
+                          var temp = cartasJugadorOrganos[organoJugador!];
+                          cartasJugadorOrganos[organoJugador] =
+                              cartasOponenteOrganos[organoOponente!];
+                          cartasOponenteOrganos[organoOponente!] = temp;
+                        });
+
+                        print(
+                            "Trasplante realizado: Órgano $organoJugador del jugador intercambiado con el órgano $organoOponente del oponente.");
+                      }(); // <- Esto ejecuta la función anónima inmediatamente
+
                       break;
                   }
                 } else {
                   print("La carta seleccionada no es especial.");
                 }
               }
+              descartes.add(cartasJugador[cartaSeleccionadaIndexJugador!]);
+              cartasJugador.removeAt(cartaSeleccionadaIndexJugador!);
 
               // Resetea los índices después de realizar la acción
               cartaSeleccionadaIndexJugador = null;

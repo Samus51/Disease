@@ -8,21 +8,21 @@
             "name": "disease",
             "request": "launch",
             "type": "dart",
-            "program": "lib/mainApp/main.dart"
+            "program": "lib/main.dart"
         },
         {
             "name": "disease (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "lib/mainApp/main.dart"
+            "program": "lib/main.dart"
         },
         {
             "name": "disease (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "program": "lib/mainApp/main.dart"
+            "program": "lib/main.dart"
         }
     ]
 }

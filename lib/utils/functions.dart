@@ -1,94 +1,45 @@
-import 'dart:async';
-
-import 'package:disease/models/baraja.dart';
-import 'package:disease/models/carta.dart';
 import 'package:disease/models/organo.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const Functions());
+import '../models/baraja.dart';
+import '../models/carta.dart';
 
-class Functions extends StatelessWidget {
-  const Functions({super.key});
-  static esperarClickEnCarta(List<Carta> cartasOponenteOrganos,
-      BuildContext context, int? organoSeleccionadoIndexOponente) {
-    Completer<int?> completer = Completer<int?>();
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Selecciona una carta"),
-        content: Wrap(
-          children: cartasOponenteOrganos.map((carta) {
-            return GestureDetector(
-              onTap: () {
-                completer.complete(organoSeleccionadoIndexOponente);
-                Navigator.pop(context);
-              },
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text("Carta $carta"),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ),
-    );
-
-    return completer.future;
-  }
-
-static void descartarCarta(int index, Baraja barajaOriginal, List<Carta> pilaDescartes) {
-  // Validamos que la carta en el índice exista
-  if (index >= 0 && index < barajaOriginal.cartas.length) {
-    // Sacamos la carta y la agregamos a la pila de descartes
-    pilaDescartes.add(barajaOriginal.cartas.removeAt(index));
-    print("Carta descartada.");
-  } else {
-    print("Índice no válido.");
-  }
-}
-
-
-  
-
-  // Diseño de la carta, mostrando el borde si está seleccionada
- static Widget _disenoCarta(Carta carta, bool esSeleccionada) {
+class Functions {
+  // Diseño de la carta, ahora siempre visible
+  static Widget disenoCarta(Carta carta, bool esSeleccionada, bool esOponente) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       width: 70,
       height: 98,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: carta.obtenerImagen(),
+          image: esOponente
+              ? AssetImage('assets/images/carta_parte_trasera.png')
+              : carta.obtenerImagen(),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(8),
-        border: esSeleccionada
-            ? Border.all(
-                color: Colors.yellow,
-                width: 4) // Borde amarillo si está seleccionada
-            : null,
+        border:
+            esSeleccionada ? Border.all(color: Colors.yellow, width: 4) : null,
       ),
     );
   }
 
- static Widget _disenoOrgano(Organo organo, bool esSeleccionado) {
-    // Determina el color del borde según el estado del órgano
+  // Diseño del órgano
+  static Widget disenoOrgano(Organo organo, bool esSeleccionado) {
     Color bordeColor;
     switch (organo.estado) {
       case EstadoOrgano.infectado:
-        bordeColor = Colors.red; // Rojo para infectado
+        bordeColor = Colors.red;
         break;
       case EstadoOrgano.inmune:
-        bordeColor = Colors.blue; // Azul para inmune
+        bordeColor = Colors.blue;
         break;
       case EstadoOrgano.vacunado:
-        bordeColor = Colors.green; // Verde para vacunado
+        bordeColor = Colors.green;
         break;
       default:
-        bordeColor = Colors.transparent; // Sin borde si no tiene estado
+        bordeColor = Colors.transparent;
     }
 
     return AnimatedContainer(
@@ -102,29 +53,64 @@ static void descartarCarta(int index, Baraja barajaOriginal, List<Carta> pilaDes
         ),
         borderRadius: BorderRadius.circular(8),
         border: esSeleccionado
-            ? Border.all(
-                color: Colors.yellow,
-                width: 4) // Borde amarillo si está seleccionado
-            : Border.all(color: bordeColor, width: 4), // Borde del estado
+            ? Border.all(color: Colors.yellow, width: 4)
+            : Border.all(color: bordeColor, width: 4),
       ),
     );
   }
 
+  // Mazo de cartas, mostrando las cartas del mazo
+  static Widget mazoDeCartas(List<Carta> cartasJugador, Baraja baraja,
+      List<Carta> descartes, Function setState) {
+    return SizedBox(
+      width: 80,
+      height: 100,
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            if (cartasJugador.length < 3) {
+              if (baraja.cartas.isEmpty) {
+                baraja.reponerCartas(descartes);
+                baraja.cartas.shuffle();
+                descartes.clear();
+              }
 
+              Carta cartaRobada = baraja.cartas.removeAt(0);
+              cartasJugador.add(cartaRobada);
+              print("Carta añadida: ${cartaRobada.descripcion}");
+            } else {
+              print("Ya tienes 3 cartas en mano. No puedes robar más.");
+            }
 
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
+            print("Pila de cartas tocada");
+          });
+        },
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: List.generate(5, (index) {
+            return Positioned(
+              left: index * 2.0,
+              top: index * 2.0,
+              child: Image.asset(
+                'assets/images/carta_parte_trasera.png',
+                width: 80,
+                height: 80,
+              ),
+            );
+          }),
         ),
       ),
     );
+  }
+
+  // Función que genera una carta de órgano y la muestra para todos
+  static Widget construirOrgano(Organo organo, bool esSeleccionada) {
+    return disenoOrgano(organo, esSeleccionada);
+  }
+
+  // Función que genera una carta y la muestra para todos
+  static Widget construirCarta(
+      Carta carta, bool esSeleccionada, bool esOponente) {
+    return disenoCarta(carta, esSeleccionada, false);
   }
 }

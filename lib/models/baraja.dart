@@ -1,51 +1,44 @@
 // ignore_for_file: avoid_print
 
-import 'dart:math';
-
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/mano.dart';
 import 'package:disease/models/organo.dart';
 
 class Baraja {
-  final List<Carta> _cartas;
+  List<Carta> cartas = []; // ✅ Lista mutable
 
   // Constructor
-  Baraja({required List<Carta> cartas}) : _cartas = cartas;
+  Baraja({required List<Carta> cartass})
+      : cartas = List.from(cartass); // Asegura que sea mutable
 
   // Método estático para repartir la mano
   static Mano repartirMano(List<Carta> mazo) {
-    // Crear una nueva mano
     Mano mano = Mano();
 
-    // Agregar cartas a la mano
-    // Supongo que repartirás algunas cartas del mazo (p.ej. 5 cartas)
     for (int i = 0; i < 3; i++) {
       if (mazo.isNotEmpty) {
-        Carta carta = mazo.removeLast(); // Extraemos una carta del mazo
-        mano.agregarCarta(carta); // Agregamos la carta a la mano
+        Carta carta = mazo.removeLast(); // Saca carta del mazo
+        mano.agregarCarta(carta);
       }
     }
 
-    // Retornar la mano repartida
     return mano;
   }
 
-  // Método para agregar las cartas de los descartes a la baraja
+  // Método para agregar cartas de descartes al mazo
   void reponerCartas(List<Carta> cartasADescartar) {
     cartas.addAll(cartasADescartar);
+    cartas.shuffle(); // Mezclar el mazo después de reponer
   }
 
   // Método para generar el mazo
   static List<Carta> generarMazo() {
     List<Carta> mazo = [];
 
-    // Definir los órganos disponibles
-    List<String> organos = ["Corazon", "Cerebro", "Hueso", "Estomago"];
+    List<String> organos = ["corazon", "cerebro", "hueso", "estomago"];
 
-    // Generar cartas de virus y curación para cada órgano
     for (String organo in organos) {
-      // 4 cartas de virus para cada órgano
       for (int i = 0; i < 4; i++) {
         mazo.add(Carta(
           tipo: TipoCarta.virus,
@@ -54,7 +47,6 @@ class Baraja {
         ));
       }
 
-      // 4 cartas de curación para cada órgano
       for (int i = 0; i < 4; i++) {
         mazo.add(Carta(
           tipo: TipoCarta.curacion,
@@ -75,61 +67,59 @@ class Baraja {
       }
     }
 
-    // Generar cartas especiales
-    // Tipo Contagio - 2 cartas
+    // Cartas especiales
     for (int i = 0; i < 2; i++) {
       mazo.add(CartaEspecial(
         tipoEspecial: TipoEspecial.contagio,
-        descripcion:
-            "Traslada tantos virus como puedas de tus órganos infectados a los órganos de los demás jugadores.",
-      ) as Carta);
+        descripcion: "Traslada virus a los órganos de los demás jugadores.",
+      ));
     }
 
-    // Tipo Guante de Látex y Error Médico - 1 carta cada uno
-    mazo.add(CartaEspecial(
-      tipoEspecial: TipoEspecial.guanteLatex,
-      descripcion:
-          'Todos los jugadores oponentes sueltan sus cartas y roban una nueva mano.',
-    ) as Carta);
-    mazo.add(CartaEspecial(
-      tipoEspecial: TipoEspecial.errorMedico,
-      descripcion:
-          'Cambia el cuerpo y mano por completo del jugador por el del oponente.',
-    ) as Carta);
+    mazo.addAll([
+      CartaEspecial(
+        tipoEspecial: TipoEspecial.guanteLatex,
+        descripcion: "Todos los jugadores cambian su mano.",
+      ),
+      CartaEspecial(
+        tipoEspecial: TipoEspecial.errorMedico,
+        descripcion: "Intercambia el cuerpo y la mano con un oponente.",
+      )
+    ]);
 
-    // Tipo Transplante y Ladrón de Órganos - 3 cartas cada uno
     for (int i = 0; i < 3; i++) {
       mazo.add(CartaEspecial(
         tipoEspecial: TipoEspecial.transplante,
-        descripcion:
-            "Carta especial que cambia un órgano del jugador por otro del oponente.",
-      ) as Carta);
+        descripcion: "Intercambia un órgano con otro jugador.",
+      ));
       mazo.add(CartaEspecial(
         tipoEspecial: TipoEspecial.ladronDeOrganos,
         descripcion: "Roba un órgano del oponente.",
-      ) as Carta);
+      ));
     }
 
-    // Mezclar el mazo para que las cartas no estén ordenadas
     mazo.shuffle();
-
     return mazo;
   }
 
-  Carta darCarta(Baraja mazo) {
-    return mazo._cartas[Random().nextInt(mazo._cartas.length)];
-  }
-
-  List<Carta> darVariasCartas(Baraja mazo, int cartasAPedir) {
-    List<Carta> nuevaMano = [];
-    for (int i = 0; i < cartasAPedir; i++) {
-      nuevaMano.add(mazo._cartas[Random().nextInt(mazo._cartas.length)]);
+  // Robar una carta del mazo (elimina la carta del mazo)
+  Carta robarCarta() {
+    if (cartas.isNotEmpty) {
+      return cartas.removeAt(0);
+    } else {
+      throw Exception("El mazo está vacío.");
     }
-    return nuevaMano;
   }
 
-  // Getter para acceder a las cartas
-  List<Carta> get cartas => List.unmodifiable(_cartas);
+  // Robar varias cartas
+  List<Carta> robarVariasCartas(int cantidad) {
+    List<Carta> nuevasCartas = [];
+    for (int i = 0; i < cantidad; i++) {
+      if (cartas.isNotEmpty) {
+        nuevasCartas.add(cartas.removeAt(0));
+      }
+    }
+    return nuevasCartas;
+  }
 
   // Método para contar las cartas por tipo
   void contarCartas() {
@@ -138,26 +128,23 @@ class Baraja {
     int contadorEspecial = 0;
     int contadorOrgano = 0;
 
-    for (var carta in _cartas) {
+    for (var carta in cartas) {
       if (carta.tipo == TipoCarta.virus) {
         contadorVirus++;
       } else if (carta.tipo == TipoCarta.curacion) {
         contadorCuracion++;
-        // ignore: unrelated_type_equality_checks
-      } else if (carta.tipo == TipoCarta.especial) {
+      } else if (carta is CartaEspecial) {
         contadorEspecial++;
+      } else if (carta is Organo) {
+        contadorOrgano++;
       }
-
-      // En caso de que tenga órgano en su tipo
-      // Verificar si la carta tiene un órgano
-      contadorOrgano++;
     }
 
-    print("Cartas de tipo 'Virus': $contadorVirus");
-    print("Cartas de tipo 'Curación': $contadorCuracion");
-    print("Cartas de tipo 'Especial': $contadorEspecial");
-    print("Cartas de tipo 'Órgano': $contadorOrgano");
-    print("Total de cartas: ${_cartas.length}");
+    print("Cartas de Virus: $contadorVirus");
+    print("Cartas de Curación: $contadorCuracion");
+    print("Cartas Especiales: $contadorEspecial");
+    print("Cartas de Órgano: $contadorOrgano");
+    print("Total de cartas: ${cartas.length}");
   }
 }
 
@@ -166,8 +153,23 @@ void main() {
   List<Carta> mazo = Baraja.generarMazo();
 
   // Crear la baraja
-  Baraja baraja = Baraja(cartas: mazo);
+  Baraja baraja = Baraja(cartass: mazo);
 
   // Contar cartas
   baraja.contarCartas();
+
+  // Robar una carta
+  try {
+    Carta cartaRobada = baraja.robarCarta();
+    print("Carta robada: ${cartaRobada.descripcion}");
+  } catch (e) {
+    print(e);
+  }
+
+  // Robar varias cartas
+  List<Carta> cartasRobadas = baraja.robarVariasCartas(3);
+  print("Cartas robadas:");
+  for (var carta in cartasRobadas) {
+    print("- ${carta.descripcion}");
+  }
 }

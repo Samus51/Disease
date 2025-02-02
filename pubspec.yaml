@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   firebase_core: ^3.10.1
+  audioplayers: ^6.1.1
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +22,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/audio/Whispers_of_the_Moon.mp3
+    - assets/audio/Cry_For_Me.mp3
+    - assets/audio/Brylie_Christopher_Oxley_-_Ethereal_Cafe.mp3
+    - assets/audio/Mega_Man_(NES)_Music_-_Victory_Theme.mp3
+    - assets/audio/Monplaisir_-_Defeat.mp3
     - assets/images/carta_parte_trasera.png
     - assets/images/cura_cerebro.png
     - assets/images/cura_corazon.png

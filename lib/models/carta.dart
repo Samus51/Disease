@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'jugador.dart';
-
 enum TipoCarta { curacion, virus, especial, organo }
 
 enum TipoOrgano { corazon, cerebro, hueso, estomago }
@@ -71,26 +69,26 @@ class Carta {
     }
   }
 
-  // Método para aplicar curación
-  void cartaCuracion(Jugador jugador) {
-    if (tipo == TipoCarta.curacion) {
-      // Lógica para curar un órgano
-      print('Usando carta de curación en $organo: $descripcion');
+  // // Método para aplicar curación
+  // void cartaCuracion(Jugador jugador) {
+  //   if (tipo == TipoCarta.curacion) {
+  //     // Lógica para curar un órgano
+  //     print('Usando carta de curación en $organo: $descripcion');
 
-      // Seleccionar un órgano del jugador al que aplicar la curación
-      String organoSeleccionado = jugador.seleccionarOrgano();
+  //     // Seleccionar un órgano del jugador al que aplicar la curación
+  //     String organoSeleccionado = jugador.seleccionarOrgano();
 
-      // Verificar que el órgano seleccionado es del tipo adecuado
-      if (organoSeleccionado.toLowerCase() == organo.toLowerCase()) {
-        // Aplicar la curación al órgano del jugador
-        jugador.aplicarCuracion(organoSeleccionado);
-        print('Curación aplicada al órgano: $organoSeleccionado');
-      } else {
-        print(
-            'No puedes curar el órgano $organoSeleccionado con esta carta. Debes seleccionar el órgano correspondiente.');
-      }
-    }
-  }
+  //     // Verificar que el órgano seleccionado es del tipo adecuado
+  //     if (organoSeleccionado.toLowerCase() == organo.toLowerCase()) {
+  //       // Aplicar la curación al órgano del jugador
+  //       jugador.aplicarCuracion(organoSeleccionado);
+  //       print('Curación aplicada al órgano: $organoSeleccionado');
+  //     } else {
+  //       print(
+  //           'No puedes curar el órgano $organoSeleccionado con esta carta. Debes seleccionar el órgano correspondiente.');
+  //     }
+  //   }
+  // }
 
   // Método para cartas de tipo "virus"
   void cartaVirus() {

@@ -32,13 +32,15 @@ class Baraja {
     cartas.shuffle(); // Mezclar el mazo después de reponer
   }
 
-  // Método para generar el mazo
+// Método para generar el mazo
   static List<Carta> generarMazo() {
     List<Carta> mazo = [];
 
     List<String> organos = ["corazon", "cerebro", "hueso", "estomago"];
 
+    // Agregar cartas de virus y de curación para cada órgano.
     for (String organo in organos) {
+      // 4 cartas de virus para cada órgano.
       for (int i = 0; i < 4; i++) {
         mazo.add(Carta(
           tipo: TipoCarta.virus,
@@ -46,7 +48,7 @@ class Baraja {
           descripcion: "Virus para el $organo",
         ));
       }
-
+      // 4 cartas de curación para cada órgano.
       for (int i = 0; i < 4; i++) {
         mazo.add(Carta(
           tipo: TipoCarta.curacion,
@@ -54,20 +56,23 @@ class Baraja {
           descripcion: "Curación para el $organo",
         ));
       }
+    }
 
-      for (var tipo in TipoOrgano.values) {
-        for (int i = 0; i < 5; i++) {
-          mazo.add(Organo(
-            tipo: TipoCarta.organo,
-            organo: tipo.toString().split('.').last,
-            descripcion: "Órgano de ${tipo.toString().split('.').last}",
-            tipoOrgano: tipo,
-          ));
-        }
+    // Agregar cartas de órgano:
+    // Se hace una sola vez para cada tipo de órgano (suponiendo que TipoOrgano.values tiene 4 elementos).
+    for (var tipo in TipoOrgano.values) {
+      for (int i = 0; i < 5; i++) {
+        mazo.add(Organo(
+          tipo: TipoCarta.organo,
+          organo: tipo.toString().split('.').last,
+          descripcion: "Órgano de ${tipo.toString().split('.').last}",
+          tipoOrgano: tipo,
+        ));
       }
     }
 
     // Cartas especiales
+    // 2 cartas de contagio
     for (int i = 0; i < 2; i++) {
       mazo.add(CartaEspecial(
         tipoEspecial: TipoEspecial.contagio,
@@ -75,6 +80,7 @@ class Baraja {
       ));
     }
 
+    // 2 cartas: guanteLatex y errorMedico
     mazo.addAll([
       CartaEspecial(
         tipoEspecial: TipoEspecial.guanteLatex,
@@ -86,6 +92,7 @@ class Baraja {
       )
     ]);
 
+    // 3 cartas de trasplante y 3 de ladrón de órganos (total 6)
     for (int i = 0; i < 3; i++) {
       mazo.add(CartaEspecial(
         tipoEspecial: TipoEspecial.transplante,

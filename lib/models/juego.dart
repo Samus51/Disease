@@ -1,5 +1,6 @@
-import 'dart:async';
+// ignore_for_file: avoid_print
 
+import 'dart:async';
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/organo.dart';
@@ -10,9 +11,10 @@ import '../models/musica_juego.dart';
 class Juego {
   static bool esTurnoJugador1 =
       true; // Variable para determinar el turno actual.
-  static int contDescartes = 0; // Variable para determinar el turno actual.
-  static int contAccion = 0;
+  static int contDescartes = 0; // Contador de descartes por turno.
+  static int contAccion = 0; // Contador de acciones por turno.
   Juego._(); // Constructor privado, la clase ahora es estática.
+
   static Future<void> realizarAccion(
     BuildContext context, // Agregado
     int? cartaSeleccionadaIndexJugador,
@@ -34,12 +36,13 @@ class Juego {
     print("Index Organos Jugador: $organoSeleccionadoIndexJugador");
     print("Index Organos Oponente: $organoSeleccionadoIndexOponente");
 
+    // Si ya se ha realizado una acción o se ha descartado 3 cartas, se ignora.
     if (contDescartes == 3 || contAccion == 1) {
       return;
     }
 
     if (!esTurnoJugador1) {
-      print("Acción denegada");
+      print("Acción denegada: no es tu turno.");
       return;
     }
     // --- Acción de CURACIÓN ---
@@ -51,31 +54,27 @@ class Juego {
           cartasJugadorOrganos[organoSeleccionadoIndexJugador];
 
       if (cartaJugadorSeleccionada.tipo == TipoCarta.curacion) {
-        final organoPlayer = organoJugadorSeleccionado;
-        print("Estado del órgano antes de curar: ${organoPlayer.estadoOrgano}");
-
-        switch (organoPlayer.estado) {
+        print(
+            "Estado del órgano antes de curar: ${organoJugadorSeleccionado.estadoOrgano}");
+        switch (organoJugadorSeleccionado.estado) {
           case EstadoOrgano.sano:
-            organoPlayer.estado = EstadoOrgano.vacunado;
+            organoJugadorSeleccionado.estado = EstadoOrgano.vacunado;
             contAccion++;
-
             print(
-                "El órgano ha sido curado y ahora está ${organoPlayer.estadoOrgano}");
+                "El órgano ha sido curado y ahora está ${organoJugadorSeleccionado.estadoOrgano}");
             moverCartaADescartes(
                 cartasJugador, descartes, cartaSeleccionadaIndexJugador);
             break;
           case EstadoOrgano.infectado:
-            organoPlayer.estado = EstadoOrgano.sano;
+            organoJugadorSeleccionado.estado = EstadoOrgano.sano;
             contAccion++;
-
             print("El órgano ha sido curado.");
             moverCartaADescartes(
                 cartasJugador, descartes, cartaSeleccionadaIndexJugador);
             break;
           case EstadoOrgano.vacunado:
-            organoPlayer.estado = EstadoOrgano.inmune;
+            organoJugadorSeleccionado.estado = EstadoOrgano.inmune;
             contAccion++;
-
             moverCartaADescartes(
                 cartasJugador, descartes, cartaSeleccionadaIndexJugador);
             print("El órgano ahora es inmune.");
@@ -102,27 +101,26 @@ class Juego {
             "Carta de virus seleccionada: ${cartaJugadorSeleccionada.organo}");
         if (cartaJugadorSeleccionada.organo ==
             organoOponenteSeleccionada.organo) {
-          final organoOponente = organoOponenteSeleccionada;
           print(
-              "Estado del órgano antes de infectar: ${organoOponente.estadoOrgano}");
-          switch (organoOponente.estado) {
+              "Estado del órgano antes de infectar: ${organoOponenteSeleccionada.estadoOrgano}");
+          switch (organoOponenteSeleccionada.estado) {
             case EstadoOrgano.sano:
-              organoOponente.estado = EstadoOrgano.infectado;
+              organoOponenteSeleccionada.estado = EstadoOrgano.infectado;
               print(
-                  "El órgano ha sido infectado y ahora está ${organoOponente.estadoOrgano}");
+                  "El órgano ha sido infectado y ahora está ${organoOponenteSeleccionada.estadoOrgano}");
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador);
               contAccion++;
               break;
             case EstadoOrgano.infectado:
-              organoOponente.estado = EstadoOrgano.muerto;
+              organoOponenteSeleccionada.estado = EstadoOrgano.muerto;
               print("El órgano ha muerto.");
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador);
               contAccion++;
               break;
             case EstadoOrgano.vacunado:
-              organoOponente.estado = EstadoOrgano.sano;
+              organoOponenteSeleccionada.estado = EstadoOrgano.sano;
               print("El órgano está vacunado, no se puede infectar.");
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador);
@@ -162,7 +160,6 @@ class Juego {
       }
 
       // --- Acciones especiales ---
-      // --- Acciones especiales ---
       if (cartaJugadorSeleccionada is CartaEspecial) {
         switch (cartaJugadorSeleccionada.tipoEspecial) {
           case TipoEspecial.ladronDeOrganos:
@@ -174,30 +171,22 @@ class Juego {
                     carta is CartaEspecial &&
                     carta.tipoEspecial == TipoEspecial.ladronDeOrganos,
               );
-
               // Pedimos seleccionar un órgano del oponente
               var organoOponente = await seleccionarOrganoParaRobo();
-
               setState(() {
-                // Verificar que el órgano no esté inmune
                 bool organoOponenteInmune =
                     organoOponente?.estadoOrgano == EstadoOrgano.inmune;
-
-                // Verificar que el jugador no tenga un órgano del mismo tipo
                 bool yaTieneEsteOrgano = cartasJugadorOrganos.any((organo) {
                   print(
                       "Comparando: ${organo.tipoOrgano} con ${organoOponente?.tipoOrgano}");
                   return organo.tipoOrgano == organoOponente?.tipoOrgano;
                 });
-
-                // Si el órgano no está inmune y el jugador no tiene uno del mismo tipo, puede robarlo
                 if (organoOponente != null &&
                     !organoOponenteInmune &&
                     !yaTieneEsteOrgano) {
                   cartasJugadorOrganos.add(organoOponente);
                   cartasOponenteOrganos.remove(organoOponente);
                   cartasJugador.remove(cartaLadron);
-
                   contAccion++;
                   print(
                       "Órgano robado del oponente: ${organoOponente.tipoOrgano}.");
@@ -210,11 +199,9 @@ class Juego {
                   }
                 }
               });
-
               print("El jugador ha intentado robar un órgano del oponente.");
             }();
             break;
-
           case TipoEspecial.contagio:
             List<Organo> organosInfectadosJugador = [];
             List<Organo> organosSanosOponente = [];
@@ -260,23 +247,16 @@ class Juego {
               }
             }
             break;
-
           case TipoEspecial.errorMedico:
             setState(() {
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador!);
-
-              // Clonar las listas para evitar referencias compartidas
               List<Carta> tempJugador = List.from(cartasJugador);
               List<Organo> tempOrganos = List.from(cartasJugadorOrganos);
-
-              // Realizar el intercambio de cartas
               cartasJugador.clear();
               cartasJugador.addAll(cartasOponente);
               cartasOponente.clear();
               cartasOponente.addAll(tempJugador);
-
-              // Intercambiar órganos
               cartasJugadorOrganos.clear();
               cartasJugadorOrganos.addAll(cartasOponenteOrganos);
               cartasOponenteOrganos.clear();
@@ -285,58 +265,42 @@ class Juego {
             contAccion++;
             print("Intercambio de cartas con otro jugador.");
             break;
-
           case TipoEspecial.guanteLatex:
             setState(() {
-              // Mueve la carta seleccionada a los descartes
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador!);
-
-              // Reemplaza la mano del oponente con tres nuevas cartas de la baraja
               cartasOponente = baraja.robarVariasCartas(3);
               contAccion++;
               print(
                   "La mano del oponente ha sido eliminada y se han robado 3 nuevas cartas.");
             });
             break;
-
           case TipoEspecial.transplante:
             print("El jugador puede realizar un trasplante de cartas.");
             int indiceTransplante = cartaSeleccionadaIndexJugador;
-            // Primero, no eliminamos la carta de Error Médico hasta que se verifique la validez.
             () async {
               var (organoJugador, organoOponente) = await seleccionarOrgano();
-
               if (organoJugador != null && organoOponente != null) {
-                // Obtén los órganos seleccionados:
                 var organoJugadorSeleccionado =
                     cartasJugadorOrganos[organoJugador];
                 var organoOponenteSeleccionado =
                     cartasOponenteOrganos[organoOponente];
-
-                // Verifica que ninguno de los órganos esté inmunizado:
                 if (organoJugadorSeleccionado.estado == EstadoOrgano.inmune ||
                     organoOponenteSeleccionado.estado == EstadoOrgano.inmune) {
                   print(
                       "Error: No se puede realizar el trasplante porque uno de los órganos está inmunizado.");
-                  return; // No se realiza el trasplante
+                  return;
                 }
-
-                // Simula el intercambio para verificar duplicados en colores
                 List<Organo> nuevosOrganosJugador =
                     List.from(cartasJugadorOrganos);
                 List<Organo> nuevosOrganosOponente =
                     List.from(cartasOponenteOrganos);
-
                 nuevosOrganosJugador[organoJugador] =
                     organoOponenteSeleccionado;
                 nuevosOrganosOponente[organoOponente] =
                     organoJugadorSeleccionado;
-
-                // Función auxiliar para detectar duplicados por color
                 bool tieneDuplicados(List<Organo> lista) {
-                  var colores =
-                      <dynamic>{}; // Usa dynamic o el tipo que uses para "color"
+                  var colores = <dynamic>{};
                   for (var o in lista) {
                     if (!colores.add(o.tipoOrgano)) return true;
                   }
@@ -346,24 +310,20 @@ class Juego {
                 if (tieneDuplicados(nuevosOrganosJugador) ||
                     tieneDuplicados(nuevosOrganosOponente)) {
                   print(
-                      "Error: No se puede realizar el trasplante porque resultaría en dos órganos del mismo color en algún jugador.");
-                  return; // Cancelamos el trasplante sin quitar la carta
+                      "Error: Trasplante inválido por duplicados en algún jugador.");
+                  return;
                 }
                 moverCartaADescartes(
                     cartasJugador, descartes, indiceTransplante);
-                // Si pasa las validaciones, procedemos con el intercambio:
                 setState(() {
                   var temp = cartasJugadorOrganos[organoJugador];
                   cartasJugadorOrganos[organoJugador] =
                       cartasOponenteOrganos[organoOponente];
                   cartasOponenteOrganos[organoOponente] = temp;
                 });
-
-                // Ahora, mueve la carta de trasplante (Error Médico o similar) a descartes.
-                //moverCartaADescartes(cartasJugador, descartes, cartaSeleccionadaIndexJugador!);
                 contAccion++;
                 print(
-                    "Trasplante realizado: Órgano $organoJugador del jugador intercambiado con el órgano $organoOponente del oponente.");
+                    "Trasplante realizado: Órgano $organoJugador intercambiado con órgano $organoOponente.");
               }
             }();
             break;
@@ -383,39 +343,20 @@ class Juego {
         cartasJugadorOrganos, cartasOponenteOrganos);
   }
 
-// Variable global para controlar el mensaje de robar
+  // Variable global para controlar el mensaje de robar
   static Timer? _timerRobar;
   static bool _mensajeRobarEnviado = false;
 
-  static void _iniciarContadorRobar() {
-    // Si ya existe un Timer, lo cancelamos para reiniciar
-    if (_timerRobar != null && _timerRobar!.isActive) {
-      _timerRobar!.cancel();
-    }
-
-    // Iniciamos un nuevo Timer para enviar un mensaje cada 15 segundos
-    _timerRobar = Timer.periodic(Duration(seconds: 15), (timer) {
-      if (_mensajeRobarEnviado) {
-        print("Recuerda que debes robar más cartas.");
-      } else {
-        print("El jugador debe robar más cartas.");
-        _mensajeRobarEnviado = true; // Evitar mensaje repetido
-      }
-    });
-  }
-
-  // Mover carta a descartes
   static void moverCartaADescartes(
       List<Carta> listaCartas, List<Carta> descartes, int index) {
     if (contDescartes >= 3 && !esTurnoJugador1) {
-      print("Contador de descartes llego a su limite para su turno");
-      ;
-      contDescartes = 0; // No más de 3 descartes.
+      print("Contador de descartes llegó a su límite para este turno.");
+      contDescartes = 0;
     }
     if (contDescartes < 3) {
       descartes.add(listaCartas.removeAt(index));
       contDescartes++;
-      print("Contador de descartes $contDescartes");
+      print("Contador de descartes: $contDescartes");
     }
   }
 
@@ -436,12 +377,12 @@ class Juego {
           .every((organo) => organo.estado == EstadoOrgano.sano);
 
       if (sanosJugador) {
-        String ganador = sanosJugador ? "Jugador" : "Oponente";
+        String ganador = "Jugador";
         MusicaJuego.detenerMusica();
         MusicaJuego.iniciarMusicaWin();
         showDialog(
           context: context,
-          barrierDismissible: false, // Para que no se cierre tocando fuera
+          barrierDismissible: false,
           builder: (context) {
             return AlertDialog(
               title: Text("¡Ganador!"),
@@ -459,12 +400,12 @@ class Juego {
         );
         return;
       } else if (sanosOponente) {
-        String ganador = sanosOponente ? "Oponente" : "Jugador";
+        String ganador = "Oponente";
         MusicaJuego.detenerMusica();
         MusicaJuego.iniciarMusicaDerrota();
         showDialog(
           context: context,
-          barrierDismissible: false, // Para que no se cierre tocando fuera
+          barrierDismissible: false,
           builder: (context) {
             return AlertDialog(
               title: Text("¡Derrota!"),
@@ -484,23 +425,23 @@ class Juego {
       }
     }
 
-    // Si el jugador tiene menos de 3 cartas, esperar a que robe hasta tener 3
+    // Si el jugador tiene menos de 3 cartas, espera a que robe hasta tener 3
     while (cartasJugador.length < 3) {
       print("El jugador necesita robar más cartas.");
-      await Future.delayed(
-          Duration(seconds: 1)); // Espera 1 segundo antes de volver a comprobar
+      await Future.delayed(Duration(seconds: 1));
     }
 
-    // Cuando el jugador tiene 3 cartas, podemos proceder con el cambio de turno
-    esTurnoJugador1 = !esTurnoJugador1;
+    // Al finalizar el turno, reiniciamos los contadores para el siguiente turno
+    contDescartes = 0;
+    contAccion = 0;
+    _mensajeRobarEnviado = false; // Reiniciamos el flag del temporizador
 
-    // Espera 1 segundo para el cambio de turno
+    // Cambiar turno
+    esTurnoJugador1 = !esTurnoJugador1;
     await Future.delayed(Duration(seconds: 1));
 
-    // Imprime el mensaje de cambio de turno
     print("Es el turno del ${esTurnoJugador1 ? 'Jugador 1' : 'Jugador 2'}");
 
-    // Esto asegura que siempre se revisa el cambio de turno
-    setState(() {}); // Llamada a setState para forzar la actualización de la UI
+    setState(() {});
   }
 }

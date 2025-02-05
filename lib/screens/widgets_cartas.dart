@@ -1,7 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
 import 'package:disease/models/bot.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/carta.dart';
 import '../models/baraja.dart';
@@ -17,6 +20,7 @@ class CartasWidget extends StatefulWidget {
 }
 
 class _CartasWidgetState extends State<CartasWidget> {
+  String nombreOponente = "Cargando..."; // Nombre por defecto mientras carga
   int? cartaSeleccionadaIndexJugador;
   int? cartaSeleccionadaIndexOponente;
   int? organoSeleccionadoIndexJugador;
@@ -37,9 +41,25 @@ class _CartasWidgetState extends State<CartasWidget> {
   @override
   void initState() {
     super.initState();
+    _obtenerNombreOponente();
     cartasJugador = baraja.robarVariasCartas(3);
     cartasOponente = baraja.robarVariasCartas(3);
     //  MusicaJuego.iniciarMusica();
+  }
+
+  Future<void> _obtenerNombreOponente() async {
+    final response = await http.get(Uri.parse('https://randomuser.me/api/'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final nombre = data['results'][0]['name']['first']; // Extraemos el nombre
+      setState(() {
+        nombreOponente = nombre;
+      });
+    } else {
+      setState(() {
+        nombreOponente = "Desconocido"; // Si hay error, pone un nombre genérico
+      });
+    }
   }
 
   @override
@@ -85,6 +105,32 @@ class _CartasWidgetState extends State<CartasWidget> {
                             SizedBox(width: 20),
                           ],
                         ),
+                        SizedBox(height: 10),
+                        // Rectángulo curvo con el nombre del oponente
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: Colors.purpleAccent.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 5,
+                                offset: Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            nombreOponente, // Aquí debe ir el nombre del bot de la API
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
                         _construirFilaCartas(cartasOponente, false, false),
                         _construirFilaCartas(
                             cartasOponenteOrganos, false, true),

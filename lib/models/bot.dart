@@ -70,6 +70,8 @@ class Bot {
           case EstadoOrgano.vacunado:
             organoParaInfectar.estado = EstadoOrgano.sano;
             cartasOponente.removeAt(virusIndexFound);
+            haJugado = true;
+
             break;
           case EstadoOrgano.inmune:
           case EstadoOrgano.muerto:

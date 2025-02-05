@@ -1,10 +1,12 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/organo.dart';
 import 'package:disease/models/baraja.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/musica_juego.dart';
 
@@ -361,88 +363,113 @@ class Juego {
     }
   }
 
-  static Future<void> finTurno(
-    BuildContext context,
-    List<Carta> cartasJugador,
-    List<Carta> descartes,
-    Baraja baraja,
-    void Function(void Function()) setState,
-    List<Organo> cartasJugadorOrganos,
-    List<Organo> cartasOponenteOrganos,
-  ) async {
-    // Primero comprobamos si algún jugador tiene 4 órganos
-    if (cartasJugadorOrganos.length == 4 || cartasOponenteOrganos.length == 4) {
-      bool sanosJugador = cartasJugadorOrganos
-          .every((organo) => organo.estado == EstadoOrgano.sano);
-      bool sanosOponente = cartasOponenteOrganos
-          .every((organo) => organo.estado == EstadoOrgano.sano);
+static Future<void> finTurno(
+  BuildContext context,
+  List<Carta> cartasJugador,
+  List<Carta> descartes,
+  Baraja baraja,
+  void Function(void Function()) setState,
+  List<Organo> cartasJugadorOrganos,
+  List<Organo> cartasOponenteOrganos,
+) async {
+  // Función para actualizar victorias o derrotas en Firebase
+  Future<void> _actualizarEstadisticas(bool ganoJugador) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentReference userDoc = FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
 
-      if (sanosJugador) {
-        String ganador = "Jugador";
-        MusicaJuego.detenerMusica();
-        MusicaJuego.iniciarMusicaWin();
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) {
-            return AlertDialog(
-              title: Text("¡Ganador!"),
-              content: Text("¡El $ganador ha ganado la partida!"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("OK"),
-                ),
-              ],
-            );
-          },
-        );
-        return;
-      } else if (sanosOponente) {
-        String ganador = "Oponente";
-        MusicaJuego.detenerMusica();
-        MusicaJuego.iniciarMusicaDerrota();
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) {
-            return AlertDialog(
-              title: Text("¡Derrota!"),
-              content: Text("¡El $ganador ha ganado la partida!"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("OK"),
-                ),
-              ],
-            );
-          },
-        );
-        return;
-      }
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot snapshot = await transaction.get(userDoc);
+
+        if (!snapshot.exists) return;
+
+        int victorias = snapshot['victorias'] ?? 0;
+        int derrotas = snapshot['derrotas'] ?? 0;
+
+        if (ganoJugador) {
+          victorias++;
+        } else {
+          derrotas++;
+        }
+
+        transaction.update(userDoc, {
+          'victorias': victorias,
+          'derrotas': derrotas,
+        });
+      });
     }
-
-    // Si el jugador tiene menos de 3 cartas, espera a que robe hasta tener 3
-    while (cartasJugador.length < 3) {
-      print("El jugador necesita robar más cartas.");
-      await Future.delayed(Duration(seconds: 1));
-    }
-
-    // Al finalizar el turno, reiniciamos los contadores para el siguiente turno
-    contDescartes = 0;
-    contAccion = 0;
-    _mensajeRobarEnviado = false; // Reiniciamos el flag del temporizador
-
-    // Cambiar turno
-    esTurnoJugador1 = !esTurnoJugador1;
-    await Future.delayed(Duration(seconds: 1));
-
-    print("Es el turno del ${esTurnoJugador1 ? 'Jugador 1' : 'Jugador 2'}");
-
-    setState(() {});
   }
+
+  // Comprobamos si algún jugador tiene 4 órganos
+  if (cartasJugadorOrganos.length == 4 || cartasOponenteOrganos.length == 4) {
+    bool sanosJugador = cartasJugadorOrganos.every((organo) => organo.estado != EstadoOrgano.infectado);
+    bool sanosOponente = cartasOponenteOrganos.every((organo) => organo.estado != EstadoOrgano.infectado);
+
+    if (sanosJugador) {
+      _actualizarEstadisticas(true); // Aumentar victorias del jugador
+      MusicaJuego.detenerMusica();
+      MusicaJuego.iniciarMusicaWin();
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("¡Ganador!"),
+            content: Text("¡El Jugador ha ganado la partida!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    } else if (sanosOponente) {
+      _actualizarEstadisticas(false); // Aumentar derrotas del jugador
+      MusicaJuego.detenerMusica();
+      MusicaJuego.iniciarMusicaDerrota();
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("¡Derrota!"),
+            content: Text("¡El Oponente ha ganado la partida!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+  }
+
+  // Si el jugador tiene menos de 3 cartas, espera a que robe hasta tener 3
+  while (cartasJugador.length < 3) {
+    print("El jugador necesita robar más cartas.");
+    await Future.delayed(Duration(seconds: 1));
+  }
+
+  // Al finalizar el turno, reiniciamos los contadores para el siguiente turno
+  contDescartes = 0;
+  contAccion = 0;
+  _mensajeRobarEnviado = false; // Reiniciamos el flag del temporizador
+
+  // Cambiar turno
+  esTurnoJugador1 = !esTurnoJugador1;
+  await Future.delayed(Duration(seconds: 1));
+
+  print("Es el turno del ${esTurnoJugador1 ? 'Jugador 1' : 'Jugador 2'}");
+
+  setState(() {});
 }

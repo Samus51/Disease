@@ -352,6 +352,7 @@ class Juego {
     if (contDescartes >= 3 && !esTurnoJugador1) {
       print("Contador de descartes llegó a su límite para este turno.");
       contDescartes = 0;
+      esTurnoJugador1 = false;
     }
     if (contDescartes < 3) {
       descartes.add(listaCartas.removeAt(index));

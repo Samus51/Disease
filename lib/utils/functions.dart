@@ -13,9 +13,7 @@ class Functions {
       height: 98,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: esOponente
-              ? AssetImage('assets/images/carta_parte_trasera.png')
-              : carta.obtenerImagen(),
+          image: carta.obtenerImagen(),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(8),

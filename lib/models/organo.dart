@@ -1,6 +1,7 @@
 import 'package:disease/models/carta.dart';
 
 class Organo extends Carta {
+  int vecesInfectado = 0; // Contador de infecciones antes de morir
   TipoOrgano tipoOrgano;
   EstadoOrgano estado;
 

@@ -1,7 +1,11 @@
-import 'package:disease/mainApp/widgets_cartas.dart';
+import 'package:disease/screens/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Prueba Cartas',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
       home: const CartasScreen(),
@@ -27,7 +31,7 @@ class CartasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CartasWidget(),
+      body: LoginPage(),
     );
   }
 }

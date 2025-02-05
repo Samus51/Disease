@@ -151,9 +151,7 @@ class _CartasWidgetState extends State<CartasWidget> {
           final carta = cartas[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: esJugador
-                ? _construirCarta(carta, index, esOrgano, esJugador)
-                : _construirCartaOponente(carta, index, esOrgano),
+            child: _construirCarta(carta, index, esOrgano, esJugador),
           );
         }),
       ),
@@ -163,19 +161,33 @@ class _CartasWidgetState extends State<CartasWidget> {
   Widget _construirCarta(
       Carta carta, int index, bool esOrgano, bool esJugador) {
     bool esSeleccionada = esOrgano
-        ? organoSeleccionadoIndexJugador == index
-        : cartaSeleccionadaIndexJugador == index;
+        ? (esJugador
+            ? organoSeleccionadoIndexJugador == index
+            : organoSeleccionadoIndexOponente == index)
+        : (esJugador
+            ? cartaSeleccionadaIndexJugador == index
+            : cartaSeleccionadaIndexOponente == index);
 
     return GestureDetector(
       onTap: () {
         setState(() {
           if (modoSeleccionAvanzada || esJugador) {
             if (esOrgano) {
-              organoSeleccionadoIndexJugador =
-                  organoSeleccionadoIndexJugador == index ? null : index;
+              if (esJugador) {
+                organoSeleccionadoIndexJugador =
+                    organoSeleccionadoIndexJugador == index ? null : index;
+              } else {
+                organoSeleccionadoIndexOponente =
+                    organoSeleccionadoIndexOponente == index ? null : index;
+              }
             } else {
-              cartaSeleccionadaIndexJugador =
-                  cartaSeleccionadaIndexJugador == index ? null : index;
+              if (esJugador) {
+                cartaSeleccionadaIndexJugador =
+                    cartaSeleccionadaIndexJugador == index ? null : index;
+              } else {
+                cartaSeleccionadaIndexOponente =
+                    cartaSeleccionadaIndexOponente == index ? null : index;
+              }
             }
           }
         });
@@ -185,7 +197,7 @@ class _CartasWidgetState extends State<CartasWidget> {
       },
       child: esOrgano
           ? Functions.disenoOrgano(carta as Organo, esSeleccionada)
-          : Functions.disenoCarta(carta, esSeleccionada, false),
+          : Functions.disenoCarta(carta, esSeleccionada, !esJugador),
     );
   }
 

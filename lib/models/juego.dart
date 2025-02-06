@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_field
 
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,7 +8,6 @@ import 'package:disease/models/organo.dart';
 import 'package:disease/models/baraja.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/musica_juego.dart';
 
 class Juego {
   static bool esTurnoJugador1 =
@@ -16,6 +15,9 @@ class Juego {
   static int contDescartes = 0; // Contador de descartes por turno.
   static int contAccion = 0; // Contador de acciones por turno.
   Juego._(); // Constructor privado, la clase ahora es estática.
+  // Variable global para controlar el mensaje de robar
+  static Timer? _timerRobar;
+  static bool _mensajeRobarEnviado = false;
 
   static Future<void> realizarAccion(
     BuildContext context, // Agregado
@@ -40,6 +42,7 @@ class Juego {
 
     // Si ya se ha realizado una acción o se ha descartado 3 cartas, se ignora.
     if (contDescartes == 3 || contAccion == 1) {
+      esTurnoJugador1 = !esTurnoJugador1;
       return;
     }
 
@@ -116,6 +119,9 @@ class Juego {
               break;
             case EstadoOrgano.infectado:
               organoOponenteSeleccionada.estado = EstadoOrgano.muerto;
+              moverCartaADescartes(
+                  cartasOponente, descartes, organoSeleccionadoIndexOponente);
+
               print("El órgano ha muerto.");
               moverCartaADescartes(
                   cartasJugador, descartes, cartaSeleccionadaIndexJugador);
@@ -166,43 +172,46 @@ class Juego {
         switch (cartaJugadorSeleccionada.tipoEspecial) {
           case TipoEspecial.ladronDeOrganos:
             print("El jugador puede robar un órgano de otro jugador.");
-            () async {
-              // Buscamos la carta "Ladrón de Órganos" en la mano del jugador
-              Carta? cartaLadron = cartasJugador.firstWhere(
-                (carta) =>
-                    carta is CartaEspecial &&
-                    carta.tipoEspecial == TipoEspecial.ladronDeOrganos,
-              );
-              // Pedimos seleccionar un órgano del oponente
-              var organoOponente = await seleccionarOrganoParaRobo();
-              setState(() {
-                bool organoOponenteInmune =
-                    organoOponente?.estadoOrgano == EstadoOrgano.inmune;
-                bool yaTieneEsteOrgano = cartasJugadorOrganos.any((organo) {
-                  print(
-                      "Comparando: ${organo.tipoOrgano} con ${organoOponente?.tipoOrgano}");
-                  return organo.tipoOrgano == organoOponente?.tipoOrgano;
-                });
-                if (organoOponente != null &&
-                    !organoOponenteInmune &&
-                    !yaTieneEsteOrgano) {
-                  cartasJugadorOrganos.add(organoOponente);
-                  cartasOponenteOrganos.remove(organoOponente);
-                  cartasJugador.remove(cartaLadron);
-                  contAccion++;
-                  print(
-                      "Órgano robado del oponente: ${organoOponente.tipoOrgano}.");
-                } else {
-                  if (organoOponenteInmune) {
-                    print("No se puede robar este órgano. Está inmune.");
-                  } else if (yaTieneEsteOrgano) {
-                    print(
-                        "No se puede robar este órgano. Ya tienes uno del mismo tipo.");
-                  }
-                }
+
+            // Buscamos la carta "Ladrón de Órganos" en la mano del jugador
+            Carta? cartaLadron = cartasJugador.firstWhere(
+              (carta) =>
+                  carta is CartaEspecial &&
+                  carta.tipoEspecial == TipoEspecial.ladronDeOrganos,
+            );
+
+            // Pedimos seleccionar un órgano del oponente
+            var organoOponente = await seleccionarOrganoParaRobo();
+
+            setState(() {
+              bool organoOponenteInmune =
+                  organoOponente?.estadoOrgano == EstadoOrgano.inmune;
+              bool yaTieneEsteOrgano = cartasJugadorOrganos.any((organo) {
+                print(
+                    "Comparando: ${organo.tipoOrgano} con ${organoOponente?.tipoOrgano}");
+                return organo.tipoOrgano == organoOponente?.tipoOrgano;
               });
-              print("El jugador ha intentado robar un órgano del oponente.");
-            }();
+
+              if (organoOponente != null &&
+                  !organoOponenteInmune &&
+                  !yaTieneEsteOrgano) {
+                cartasJugadorOrganos.add(organoOponente);
+                cartasOponenteOrganos.remove(organoOponente);
+                cartasJugador.remove(cartaLadron);
+                contAccion++;
+                print(
+                    "Órgano robado del oponente: ${organoOponente.tipoOrgano}.");
+              } else {
+                if (organoOponenteInmune) {
+                  print("No se puede robar este órgano. Está inmune.");
+                } else if (yaTieneEsteOrgano) {
+                  print(
+                      "No se puede robar este órgano. Ya tienes uno del mismo tipo.");
+                }
+              }
+            });
+
+            print("El jugador ha intentado robar un órgano del oponente.");
             break;
           case TipoEspecial.contagio:
             List<Organo> organosInfectadosJugador = [];
@@ -277,9 +286,11 @@ class Juego {
                   "La mano del oponente ha sido eliminada y se han robado 3 nuevas cartas.");
             });
             break;
+
           case TipoEspecial.transplante:
             print("El jugador puede realizar un trasplante de cartas.");
             int indiceTransplante = cartaSeleccionadaIndexJugador;
+
             () async {
               var (organoJugador, organoOponente) = await seleccionarOrgano();
               if (organoJugador != null && organoOponente != null) {
@@ -287,20 +298,23 @@ class Juego {
                     cartasJugadorOrganos[organoJugador];
                 var organoOponenteSeleccionado =
                     cartasOponenteOrganos[organoOponente];
+
                 if (organoJugadorSeleccionado.estado == EstadoOrgano.inmune ||
                     organoOponenteSeleccionado.estado == EstadoOrgano.inmune) {
-                  print(
-                      "Error: No se puede realizar el trasplante porque uno de los órganos está inmunizado.");
+                  print("Error: Uno de los órganos está inmunizado.");
                   return;
                 }
+
                 List<Organo> nuevosOrganosJugador =
                     List.from(cartasJugadorOrganos);
                 List<Organo> nuevosOrganosOponente =
                     List.from(cartasOponenteOrganos);
+
                 nuevosOrganosJugador[organoJugador] =
                     organoOponenteSeleccionado;
                 nuevosOrganosOponente[organoOponente] =
                     organoJugadorSeleccionado;
+
                 bool tieneDuplicados(List<Organo> lista) {
                   var colores = <dynamic>{};
                   for (var o in lista) {
@@ -311,23 +325,30 @@ class Juego {
 
                 if (tieneDuplicados(nuevosOrganosJugador) ||
                     tieneDuplicados(nuevosOrganosOponente)) {
-                  print(
-                      "Error: Trasplante inválido por duplicados en algún jugador.");
+                  print("Error: Trasplante inválido por duplicados.");
                   return;
                 }
+
                 moverCartaADescartes(
                     cartasJugador, descartes, indiceTransplante);
+
                 setState(() {
                   var temp = cartasJugadorOrganos[organoJugador];
                   cartasJugadorOrganos[organoJugador] =
                       cartasOponenteOrganos[organoOponente];
                   cartasOponenteOrganos[organoOponente] = temp;
                 });
+
                 contAccion++;
-                print(
-                    "Trasplante realizado: Órgano $organoJugador intercambiado con órgano $organoOponente.");
+                print("Trasplante realizado con éxito.");
+
+                // Llamamos a finTurno y terminamos la función aquí
+                await finTurno(context, cartasJugador, descartes, baraja,
+                    setState, cartasJugadorOrganos, cartasOponenteOrganos);
+                return;
               }
             }();
+
             break;
         }
       } else {
@@ -345,38 +366,32 @@ class Juego {
         cartasJugadorOrganos, cartasOponenteOrganos);
   }
 
-  // Variable global para controlar el mensaje de robar
-  static Timer? _timerRobar;
-  static bool _mensajeRobarEnviado = false;
-
   static void moverCartaADescartes(
       List<Carta> listaCartas, List<Carta> descartes, int index) {
-    if (contDescartes >= 3 && !esTurnoJugador1) {
+    if (contDescartes >= 3) {
       print("Contador de descartes llegó a su límite para este turno.");
-      contDescartes = 0;
-      esTurnoJugador1 = false;
-    }
-    if (contDescartes < 3) {
+
+      if (listaCartas.isNotEmpty) {
+        // Robar una carta
+        Carta cartaRobada = listaCartas.removeAt(0);
+        print("Carta robada: $cartaRobada");
+
+        // Cambiar turno
+        esTurnoJugador1 = false;
+        print("Turno cambiado al bot.");
+      }
+    } else {
       descartes.add(listaCartas.removeAt(index));
       contDescartes++;
       print("Contador de descartes: $contDescartes");
     }
   }
 
-static Future<void> finTurno(
-  BuildContext context,
-  List<Carta> cartasJugador,
-  List<Carta> descartes,
-  Baraja baraja,
-  void Function(void Function()) setState,
-  List<Organo> cartasJugadorOrganos,
-  List<Organo> cartasOponenteOrganos,
-) async {
-  // Función para actualizar victorias o derrotas en Firebase
-  Future<void> _actualizarEstadisticas(bool ganoJugador) async {
+  static Future<void> actualizarEstadisticas(bool ganoJugador) async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentReference userDoc = FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
+      DocumentReference userDoc =
+          FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         DocumentSnapshot snapshot = await transaction.get(userDoc);
@@ -400,76 +415,36 @@ static Future<void> finTurno(
     }
   }
 
-  // Comprobamos si algún jugador tiene 4 órganos
-  if (cartasJugadorOrganos.length == 4 || cartasOponenteOrganos.length == 4) {
-    bool sanosJugador = cartasJugadorOrganos.every((organo) => organo.estado != EstadoOrgano.infectado);
-    bool sanosOponente = cartasOponenteOrganos.every((organo) => organo.estado != EstadoOrgano.infectado);
+  static Future<void> finTurno(
+    BuildContext context,
+    List<Carta> cartasJugador,
+    List<Carta> descartes,
+    Baraja baraja,
+    void Function(void Function()) setState,
+    List<Organo> cartasJugadorOrganos,
+    List<Organo> cartasOponenteOrganos,
+  ) async {
+    // Función para actualizar victorias o derrotas en Firebase
 
-    if (sanosJugador) {
-      _actualizarEstadisticas(true); // Aumentar victorias del jugador
-      MusicaJuego.detenerMusica();
-      MusicaJuego.iniciarMusicaWin();
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("¡Ganador!"),
-            content: Text("¡El Jugador ha ganado la partida!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
-      return;
-    } else if (sanosOponente) {
-      _actualizarEstadisticas(false); // Aumentar derrotas del jugador
-      MusicaJuego.detenerMusica();
-      MusicaJuego.iniciarMusicaDerrota();
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("¡Derrota!"),
-            content: Text("¡El Oponente ha ganado la partida!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
-      return;
+    // Comprobamos si algún jugador tiene 4 órganos
+
+    // Si el jugador tiene menos de 3 cartas, espera a que robe hasta tener 3
+    while (cartasJugador.length < 3) {
+      print("El jugador necesita robar más cartas.");
+      await Future.delayed(Duration(seconds: 1));
     }
-  }
 
-  // Si el jugador tiene menos de 3 cartas, espera a que robe hasta tener 3
-  while (cartasJugador.length < 3) {
-    print("El jugador necesita robar más cartas.");
+    // Al finalizar el turno, reiniciamos los contadores para el siguiente turno
+    contDescartes = 0;
+    contAccion = 0;
+    _mensajeRobarEnviado = false; // Reiniciamos el flag del temporizador
+
+    // Cambiar turno
+    esTurnoJugador1 = !esTurnoJugador1;
     await Future.delayed(Duration(seconds: 1));
+
+    print("Es el turno del ${esTurnoJugador1 ? 'Jugador 1' : 'Jugador 2'}");
+
+    setState(() {});
   }
-
-  // Al finalizar el turno, reiniciamos los contadores para el siguiente turno
-  contDescartes = 0;
-  contAccion = 0;
-  _mensajeRobarEnviado = false; // Reiniciamos el flag del temporizador
-
-  // Cambiar turno
-  esTurnoJugador1 = !esTurnoJugador1;
-  await Future.delayed(Duration(seconds: 1));
-
-  print("Es el turno del ${esTurnoJugador1 ? 'Jugador 1' : 'Jugador 2'}");
-
-  setState(() {});
 }

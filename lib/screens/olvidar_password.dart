@@ -134,7 +134,7 @@ class _OlvidarPasswordPageState extends State<OlvidarPasswordPage> {
   Widget enviarCorreo() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
-      child: Container(
+      child: SizedBox(
         width: 300, // Establecemos un ancho fijo para el botón
         child: ElevatedButton(
           onPressed: () async {

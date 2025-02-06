@@ -2,7 +2,6 @@
 
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
-import 'package:disease/models/mano.dart';
 import 'package:disease/models/organo.dart';
 
 class Baraja {
@@ -11,20 +10,6 @@ class Baraja {
   // Constructor
   Baraja({required List<Carta> cartass})
       : cartas = List.from(cartass); // Asegura que sea mutable
-
-  // Método estático para repartir la mano
-  static Mano repartirMano(List<Carta> mazo) {
-    Mano mano = Mano();
-
-    for (int i = 0; i < 3; i++) {
-      if (mazo.isNotEmpty) {
-        Carta carta = mazo.removeLast(); // Saca carta del mazo
-        mano.agregarCarta(carta);
-      }
-    }
-
-    return mano;
-  }
 
   // Método para agregar cartas de descartes al mazo
   void reponerCartas(List<Carta> cartasADescartar) {

@@ -1,17 +1,19 @@
+// ignore_for_file: unused_field
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:disease/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'widgets_cartas.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int _victorias = 0;
   int _derrotas = 0;
 
@@ -46,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -59,7 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Título
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
@@ -78,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                // Botón para jugar
                 ElevatedButton(
                   onPressed: _goToGame,
                   style: ElevatedButton.styleFrom(
@@ -98,22 +100,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                Text(
-                  'Victorias: $_victorias',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Derrotas: $_derrotas',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                user != null
+                    ? StreamBuilder<DocumentSnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection('usuarios')
+                            .doc(user.uid)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData || !snapshot.data!.exists) {
+                            return Text(
+                              "Cargando...",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 22),
+                            );
+                          }
+
+                          var userData = snapshot.data!;
+                          int victorias = userData['victorias'] ?? 0;
+                          int derrotas = userData['derrotas'] ?? 0;
+
+                          return Column(
+                            children: [
+                              Text(
+                                'Victorias: $victorias',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                'Derrotas: $derrotas',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      )
+                    : Text(
+                        "No hay usuario",
+                        style: TextStyle(color: Colors.white, fontSize: 22),
+                      ),
               ],
             ),
           ),
@@ -122,10 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await FirebaseAuth.instance.signOut();
-
           if (mounted) {
             Navigator.pushAndRemoveUntil(
-              // ignore: use_build_context_synchronously
               context,
               MaterialPageRoute(builder: (context) => LoginPage()),
               (route) => false,

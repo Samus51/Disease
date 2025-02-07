@@ -57,23 +57,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pc\\Desktop\\Disease\\build\\app\\generated\\res\\google-services\\release\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,198,279,383,491,611,716",
-                        "endColumns": "142,80,103,107,119,104,73",
-                        "endOffsets": "193,274,378,486,606,711,785"
-                    },
-                    "to": {
-                        "startLines": "190,194,195,196,197,198,199",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "11571,11929,12010,12114,12222,12342,12447",
-                        "endColumns": "142,80,103,107,119,104,73",
-                        "endOffsets": "11709,12005,12109,12217,12337,12442,12516"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\12b0896a1e8b6b6ff3d266e9ea7b03ba\\transformed\\jetified-activity-1.8.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3",
@@ -161,6 +144,25 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Pc\\Desktop\\Disease\\Proyecto_Disease\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,832",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "483,998"
+                    },
+                    "to": {
+                        "startLines": "201,205",
+                        "startColumns": "4,4",
+                        "startOffsets": "12592,12773",
+                        "endLines": "204,207",
+                        "endColumns": "12,12",
+                        "endOffsets": "12768,12937"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\a4ea828482e921700f11013aa3c92e90\\transformed\\jetified-startup-runtime-1.1.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -235,25 +237,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pc\\Desktop\\Disease\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "176,832",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "483,998"
-                    },
-                    "to": {
-                        "startLines": "201,205",
-                        "startColumns": "4,4",
-                        "startOffsets": "12592,12773",
-                        "endLines": "204,207",
-                        "endColumns": "12,12",
-                        "endOffsets": "12768,12937"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\82968b121f0e1b10d238e3d1e70ec4b5\\transformed\\jetified-play-services-basement-18.4.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,7",
@@ -268,6 +251,23 @@
                         "startOffsets": "8272,10210",
                         "endColumns": "67,166",
                         "endOffsets": "8335,10372"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Pc\\Desktop\\Disease\\Proyecto_Disease\\build\\app\\generated\\res\\google-services\\release\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,198,279,383,491,611,716",
+                        "endColumns": "142,80,103,107,119,104,73",
+                        "endOffsets": "193,274,378,486,606,711,785"
+                    },
+                    "to": {
+                        "startLines": "190,194,195,196,197,198,199",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "11571,11929,12010,12114,12222,12342,12447",
+                        "endColumns": "142,80,103,107,119,104,73",
+                        "endOffsets": "11709,12005,12109,12217,12337,12442,12516"
                     }
                 },
                 {

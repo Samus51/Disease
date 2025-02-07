@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:disease/models/carta.dart';
 import 'package:disease/models/carta_especial.dart';
 import 'package:disease/models/organo.dart';

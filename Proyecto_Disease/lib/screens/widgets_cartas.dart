@@ -95,18 +95,6 @@ class _CartasWidgetState extends State<CartasWidget> {
             organo.estado != EstadoOrgano.muerto,
       );
     }
-    // Mostrar el contenido de las cartas del jugador para depuración
-    print("Cartas del Jugador:");
-    cartasJugadorOrganos.forEach((organo) {
-      print("Organo: ${organo.descripcionCompleta}, Estado: ${organo.estado}");
-    });
-
-    // Mostrar el contenido de las cartas del oponente para depuración
-    print("Cartas del Oponente:");
-    cartasOponenteOrganos.forEach((organo) {
-      print("Organo: ${organo.descripcionCompleta}, Estado: ${organo.estado}");
-    });
-
     // Si el jugador tiene todos los órganos en buen estado o el oponente,
     // entonces se determina el ganador
     if (jugadorGana || oponenteGana) {
@@ -120,11 +108,9 @@ class _CartasWidgetState extends State<CartasWidget> {
 
       if (jugadorEsGanador) {
         // Si el jugador gana
-        print("El Jugador ha ganado la partida.");
         MusicaJuego.iniciarMusicaWin();
       } else {
         // Si el oponente gana
-        print("El Oponente ha ganado la partida.");
         MusicaJuego.iniciarMusicaDerrota();
       }
 
@@ -205,7 +191,7 @@ class _CartasWidgetState extends State<CartasWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             mazoDeCartas(cartasJugador, baraja, descartes),
-                            SizedBox(width: 250),
+                            SizedBox(width: 215),
                             FloatingActionButton(
                               onPressed: _mostrarDialogoSalida,
                               backgroundColor: Colors.purple,
@@ -275,12 +261,7 @@ class _CartasWidgetState extends State<CartasWidget> {
 
               Carta cartaRobada = baraja.cartas.removeAt(0);
               cartasJugador.add(cartaRobada);
-              print("Carta añadida: ${cartaRobada.descripcion}");
-            } else {
-              print("Ya tienes 3 cartas en mano. No puedes robar más.");
-            }
-
-            print("Pila de cartas tocada");
+            } else {}
           });
         },
         child: Stack(

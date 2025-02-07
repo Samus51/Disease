@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, unused_field
+// ignore_for_file: unused_field
 
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,11 +35,6 @@ class Juego {
     List<Carta> descartes, // Agregado
     Baraja baraja, // Agregado
   ) async {
-    print("Index Jugador: $cartaSeleccionadaIndexJugador");
-    print("Index Oponente: $cartaSeleccionadaIndexOponente");
-    print("Index Organos Jugador: $organoSeleccionadoIndexJugador");
-    print("Index Organos Oponente: $organoSeleccionadoIndexOponente");
-
     // Si ya se ha realizado una acción o se ha descartado 3 cartas, se ignora.
     if (contDescartes == 3 || contAccion == 1) {
       esTurnoJugador1 = !esTurnoJugador1;

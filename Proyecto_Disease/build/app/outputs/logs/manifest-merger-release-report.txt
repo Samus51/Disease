@@ -1,13 +1,13 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:2:5-33:19
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:2:5-33:19
-MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
-MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:2:5-33:19
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:2:5-33:19
+MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:28:5-73:19
@@ -71,26 +71,26 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Pc
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Pc\.gradle\caches\8.9\transforms\c95cfd8dd29b21a6ea53f6deccbfca62\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:11:5-19:19
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Pc\.gradle\caches\8.9\transforms\c95cfd8dd29b21a6ea53f6deccbfca62\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:11:5-19:19
 	android:extractNativeLibs
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\Pc\.gradle\caches\8.9\transforms\12e6e5ce4f890b44b49e409042256d0c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:3:9-32
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:3:9-32
 	android:icon
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:5:9-43
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:5:9-43
 	android:name
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:4:9-42
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:4:9-42
 manifest
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
-MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
-MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
+MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
+MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-analytics:22.1.2] C:\Users\Pc\.gradle\caches\8.9\transforms\a4620953c58ed9cb47bf3c726e4088cf\transformed\jetified-firebase-analytics-22.1.2\AndroidManifest.xml:2:1-9:12
@@ -160,79 +160,79 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Pc\
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\Pc\.gradle\caches\8.9\transforms\215afdb84f220077880e876f2fee5145\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Pc\.gradle\caches\8.9\transforms\c95cfd8dd29b21a6ea53f6deccbfca62\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:2:1-21:12
 	package
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:1:11-69
 queries
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:39:5-44:15
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:39:5-44:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:40:9-43:18
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:40:9-43:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:41:13-72
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:41:13-72
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:41:21-70
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:41:21-70
 data
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:13-50
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:13-50
 	android:mimeType
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:19-48
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:19-48
 activity#com.example.disease.MainActivity
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:6:9-27:20
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:6:9-27:20
 	android:launchMode
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:9:13-43
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:9:13-43
 	android:hardwareAccelerated
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:13:13-47
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:13:13-47
 	android:windowSoftInputMode
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:14:13-55
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:14:13-55
 	android:exported
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:8:13-36
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:8:13-36
 	android:configChanges
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:12:13-163
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:12:13-163
 	android:theme
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:11:13-47
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:11:13-47
 	android:taskAffinity
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:10:13-36
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:10:13-36
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:7:13-41
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:7:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:19:13-22:17
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:19:13-22:17
 	android:resource
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:21:15-52
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:21:15-52
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:20:15-70
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:20:15-70
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:23:13-26:29
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:23:13-26:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:24:17-68
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:24:17-68
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:24:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:25:17-76
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:25:17-76
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:25:27-74
 meta-data#flutterEmbedding
-ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:30:9-32:33
+ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:30:9-32:33
 	android:value
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:32:13-30
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:32:13-30
 	android:name
-		ADDED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:31:13-44
+		ADDED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:31:13-44
 uses-sdk
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
-MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
+MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:audioplayers_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\audioplayers_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\path_provider_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:21:5-23:151
@@ -372,15 +372,15 @@ MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Pc\.gradle\cach
 	tools:overrideLibrary
 		ADDED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:23:9-148
 	android:targetSdkVersion
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:66:9-72:19
@@ -400,25 +400,25 @@ MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\Pc\.gradle\cac
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:21.0.0] C:\Users\Pc\.gradle\caches\8.9\transforms\6432577e4faa91670db0b8a9a1a3c07d\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
+		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-134
+		ADDED from [:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
-ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
+		ADDED from [:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
+		ADDED from [:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:10:5-79
 MERGED from [com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:26:5-79

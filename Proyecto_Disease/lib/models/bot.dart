@@ -45,7 +45,6 @@ class Bot {
     bool haJugado = false;
 
     if (intentos > 3) {
-      print("El bot no encontró jugadas válidas tras varios intentos.");
       Juego.esTurnoJugador1 = true;
       return;
     }
@@ -199,19 +198,13 @@ class Bot {
                       // Si el órgano del jugador está sano, lo infectamos
                       if (organoJugador.estado == EstadoOrgano.sano) {
                         organoJugador.estado = EstadoOrgano.infectado;
-                        print(
-                            "El órgano del jugador (${organoJugador.tipoOrgano}) estaba sano y ahora se infecta.");
                       }
                       // Si ya estaba infectado, se considera muerto y se elimina de la lista
                       else if (organoJugador.estado == EstadoOrgano.infectado) {
                         cartasJugadorOrganos.remove(organoJugador);
-                        print(
-                            "El órgano del jugador (${organoJugador.tipoOrgano}) ya estaba infectado y se elimina (muere).");
                       }
                       // En ambos casos, el órgano del oponente se cura:
                       organoOponente.estado = EstadoOrgano.sano;
-                      print(
-                          "El órgano del oponente (${organoOponente.tipoOrgano}) se cura.");
                       Juego.contAccion++;
                       _robarCartasYActualizarTurno(
                           baraja, cartasOponente, setState);
@@ -406,7 +399,6 @@ class Bot {
       }
 
       Juego.esTurnoJugador1 = true;
-      print("Turno siguiente para Jugador 1 $Juego.esTurnoJugador1");
     }
   }
 }

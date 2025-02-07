@@ -4,9 +4,9 @@
     minSdkVersion="24"
     targetSdkVersion="35"
     shrinking="true"
-    mergedManifest="C:\Users\Pc\Desktop\Disease\build\app\intermediates\merged_manifest\release\AndroidManifest.xml"
-    proguardFiles="C:\Users\Pc\Desktop\Disease\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.1.0;C:\dev\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
-    partialResultsDir="C:\Users\Pc\Desktop\Disease\build\app\intermediates\lint_vital_partial_results\release\out"
+    mergedManifest="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\merged_manifest\release\AndroidManifest.xml"
+    proguardFiles="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.1.0;C:\dev\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
+    partialResultsDir="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\lint_vital_partial_results\release\out"
     desugaredMethodsFiles="C:\Users\Pc\.gradle\caches\8.9\transforms\aaeb209f67776144e887d0716e5466a1\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
@@ -27,10 +27,10 @@
         value="android.app.Application" />
   </manifestPlaceholders>
   <mainArtifact
-      classOutputs="C:\Users\Pc\Desktop\Disease\build\app\intermediates\javac\release\classes;C:\Users\Pc\Desktop\Disease\build\app\tmp\kotlin-classes\release;C:\Users\Pc\Desktop\Disease\build\app\kotlinToolingMetadata;C:\Users\Pc\Desktop\Disease\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\R.jar"
+      classOutputs="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\javac\release\classes;C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\tmp\kotlin-classes\release;C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\kotlinToolingMetadata;C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\R.jar"
       applicationId="com.example.disease"
-      generatedSourceFolders="C:\Users\Pc\Desktop\Disease\build\app\generated\ap_generated_sources\release\out"
-      generatedResourceFolders="C:\Users\Pc\Desktop\Disease\build\app\generated\res\google-services\release;C:\Users\Pc\Desktop\Disease\build\app\generated\res\resValues\release"
+      generatedSourceFolders="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\generated\ap_generated_sources\release\out"
+      generatedResourceFolders="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\generated\res\google-services\release;C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\generated\res\resValues\release"
       desugaredMethodsFiles="C:\Users\Pc\.gradle\caches\8.9\transforms\aaeb209f67776144e887d0716e5466a1\transformed\D8BackportedDesugaredMethods.txt">
   </mainArtifact>
 </variant>

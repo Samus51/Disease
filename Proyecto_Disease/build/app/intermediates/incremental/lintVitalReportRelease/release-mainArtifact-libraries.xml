@@ -1,10 +1,10 @@
 <libraries>
   <library
-      name="__local_aars__:C:\Users\Pc\Desktop\Disease\build\app\intermediates\flutter\release\libs.jar:unspecified@jar"
-      jars="C:\Users\Pc\Desktop\Disease\build\app\intermediates\flutter\release\libs.jar"
-      resolved="__local_aars__:C:\Users\Pc\Desktop\Disease\build\app\intermediates\flutter\release\libs.jar:unspecified"/>
+      name="__local_aars__:C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\flutter\release\libs.jar:unspecified@jar"
+      jars="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\flutter\release\libs.jar"
+      resolved="__local_aars__:C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\app\intermediates\flutter\release\libs.jar:unspecified"/>
   <library
-      name="C:\Users\Pc\Desktop\Disease\android@@:audioplayers_android::release"
+      name="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android@@:audioplayers_android::release"
       jars="C:\Users\Pc\.gradle\caches\8.9\transforms\991f43e12ea3de14ab39f06969e96828\transformed\out\jars\classes.jar;C:\Users\Pc\.gradle\caches\8.9\transforms\991f43e12ea3de14ab39f06969e96828\transformed\out\jars\libs\R.jar"
       resolved="xyz.luan.audioplayers:audioplayers_android:unspecified"
       folder="C:\Users\Pc\.gradle\caches\8.9\transforms\991f43e12ea3de14ab39f06969e96828\transformed\out"
@@ -17,7 +17,7 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="C:\Users\Pc\Desktop\Disease\android@@:cloud_firestore::release"
+      name="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android@@:cloud_firestore::release"
       jars="C:\Users\Pc\.gradle\caches\8.9\transforms\ca0879680937bb466acdbad1548caa56\transformed\out\jars\classes.jar;C:\Users\Pc\.gradle\caches\8.9\transforms\ca0879680937bb466acdbad1548caa56\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.firebase.cloudfirestore:cloud_firestore:unspecified"
       folder="C:\Users\Pc\.gradle\caches\8.9\transforms\ca0879680937bb466acdbad1548caa56\transformed\out"
@@ -30,7 +30,7 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="C:\Users\Pc\Desktop\Disease\android@@:firebase_auth::release"
+      name="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android@@:firebase_auth::release"
       jars="C:\Users\Pc\.gradle\caches\8.9\transforms\badd021bc821dcc846e10555f5c67b0f\transformed\out\jars\classes.jar;C:\Users\Pc\.gradle\caches\8.9\transforms\badd021bc821dcc846e10555f5c67b0f\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.firebase.auth:firebase_auth:unspecified"
       folder="C:\Users\Pc\.gradle\caches\8.9\transforms\badd021bc821dcc846e10555f5c67b0f\transformed\out"
@@ -43,7 +43,7 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="C:\Users\Pc\Desktop\Disease\android@@:firebase_core::release"
+      name="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android@@:firebase_core::release"
       jars="C:\Users\Pc\.gradle\caches\8.9\transforms\0e9c4654481f781136db525421a6000a\transformed\out\jars\classes.jar;C:\Users\Pc\.gradle\caches\8.9\transforms\0e9c4654481f781136db525421a6000a\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.firebase.core:firebase_core:unspecified"
       folder="C:\Users\Pc\.gradle\caches\8.9\transforms\0e9c4654481f781136db525421a6000a\transformed\out"
@@ -56,7 +56,7 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="C:\Users\Pc\Desktop\Disease\android@@:path_provider_android::release"
+      name="C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android@@:path_provider_android::release"
       jars="C:\Users\Pc\.gradle\caches\8.9\transforms\f6a87bb9d97984861e8c41d776209392\transformed\out\jars\classes.jar;C:\Users\Pc\.gradle\caches\8.9\transforms\f6a87bb9d97984861e8c41d776209392\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.pathprovider:path_provider_android:unspecified"
       folder="C:\Users\Pc\.gradle\caches\8.9\transforms\f6a87bb9d97984861e8c41d776209392\transformed\out"

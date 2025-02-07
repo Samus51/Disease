@@ -15,16 +15,16 @@
 15         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
 16    -->
 17    <queries>
-17-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:39:5-44:15
+17-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:39:5-44:15
 18        <intent>
-18-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:40:9-43:18
+18-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:40:9-43:18
 19            <action android:name="android.intent.action.PROCESS_TEXT" />
-19-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:41:13-72
-19-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:41:21-70
+19-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:41:13-72
+19-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:41:21-70
 20
 21            <data android:mimeType="text/plain" />
-21-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:13-50
-21-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:19-48
+21-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:13-50
+21-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:19-48
 22        </intent>
 23    </queries>
 24    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
@@ -67,32 +67,32 @@
 40
 41    <application
 42        android:name="android.app.Application"
-42-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:4:9-42
+42-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:4:9-42
 43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 43-->[androidx.core:core:1.13.1] C:\Users\Pc\.gradle\caches\8.9\transforms\12e6e5ce4f890b44b49e409042256d0c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 44        android:extractNativeLibs="false"
 45        android:icon="@mipmap/ic_launcher"
-45-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:5:9-43
+45-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:5:9-43
 46        android:label="disease" >
-46-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:3:9-32
+46-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:3:9-32
 47        <activity
-47-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:6:9-27:20
+47-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:6:9-27:20
 48            android:name="com.example.disease.MainActivity"
-48-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:7:13-41
+48-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:7:13-41
 49            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-49-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:12:13-163
+49-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:12:13-163
 50            android:exported="true"
-50-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:8:13-36
+50-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:8:13-36
 51            android:hardwareAccelerated="true"
-51-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:13:13-47
+51-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:13:13-47
 52            android:launchMode="singleTop"
-52-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:9:13-43
+52-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:9:13-43
 53            android:taskAffinity=""
-53-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:10:13-36
+53-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:10:13-36
 54            android:theme="@style/LaunchTheme"
-54-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:11:13-47
+54-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:11:13-47
 55            android:windowSoftInputMode="adjustResize" >
-55-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:14:13-55
+55-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:14:13-55
 56
 57            <!--
 58                 Specifies an Android theme to apply to this Activity as soon as
@@ -101,21 +101,21 @@
 61                 to determine the Window background behind the Flutter UI.
 62            -->
 63            <meta-data
-63-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:19:13-22:17
+63-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:19:13-22:17
 64                android:name="io.flutter.embedding.android.NormalTheme"
-64-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:20:15-70
+64-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:20:15-70
 65                android:resource="@style/NormalTheme" />
-65-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:21:15-52
+65-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:21:15-52
 66
 67            <intent-filter>
-67-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:23:13-26:29
+67-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:23:13-26:29
 68                <action android:name="android.intent.action.MAIN" />
-68-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:24:17-68
-68-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:24:25-66
+68-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:24:17-68
+68-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:24:25-66
 69
 70                <category android:name="android.intent.category.LAUNCHER" />
-70-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:25:17-76
-70-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:25:27-74
+70-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:25:17-76
+70-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:25:27-74
 71            </intent-filter>
 72        </activity>
 73        <!--
@@ -123,38 +123,38 @@
 75             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 76        -->
 77        <meta-data
-77-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:30:9-32:33
+77-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:30:9-32:33
 78            android:name="flutterEmbedding"
-78-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:31:13-44
+78-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:31:13-44
 79            android:value="2" />
-79-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:32:13-30
+79-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:32:13-30
 80
 81        <service
-81-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+81-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
 82            android:name="com.google.firebase.components.ComponentDiscoveryService"
-82-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
+82-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
 83            android:directBootAware="true"
 83-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Pc\.gradle\caches\8.9\transforms\6432577e4faa91670db0b8a9a1a3c07d\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
 84            android:exported="false" >
 84-->[com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:16:13-37
 85            <meta-data
-85-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+85-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 86                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
-86-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-134
+86-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-134
 87                android:value="com.google.firebase.components.ComponentRegistrar" />
-87-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+87-->[:cloud_firestore] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 88            <meta-data
-88-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+88-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 89                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
-89-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
+89-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
 90                android:value="com.google.firebase.components.ComponentRegistrar" />
-90-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+90-->[:firebase_auth] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_auth\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 91            <meta-data
-91-->[:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+91-->[:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 92                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
-92-->[:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
+92-->[:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
 93                android:value="com.google.firebase.components.ComponentRegistrar" />
-93-->[:firebase_core] C:\Users\Pc\Desktop\Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+93-->[:firebase_core] C:\Users\Pc\Desktop\Disease\Proyecto_Disease\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
 94            <meta-data
 94-->[com.google.firebase:firebase-firestore:25.1.1] C:\Users\Pc\.gradle\caches\8.9\transforms\710367af023d52ccb2f730240e8e3110\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:17:13-19:85
 95                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
@@ -231,7 +231,7 @@
 130-->[com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:39:27-75
 131
 132                <data
-132-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:13-50
+132-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:13-50
 133                    android:host="firebase.auth"
 134                    android:path="/"
 135                    android:scheme="genericidp" />
@@ -263,7 +263,7 @@
 148-->[com.google.firebase:firebase-auth:23.1.0] C:\Users\Pc\.gradle\caches\8.9\transforms\f89b2038dfe255f34ecb00f47107a819\transformed\jetified-firebase-auth-23.1.0\AndroidManifest.xml:39:27-75
 149
 150                <data
-150-->C:\Users\Pc\Desktop\Disease\android\app\src\main\AndroidManifest.xml:42:13-50
+150-->C:\Users\Pc\Desktop\Disease\Proyecto_Disease\android\app\src\main\AndroidManifest.xml:42:13-50
 151                    android:host="firebase.auth"
 152                    android:path="/"
 153                    android:scheme="recaptcha" />

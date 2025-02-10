@@ -151,98 +151,98 @@ class _CartasWidgetState extends State<CartasWidget> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    if (!Juego.esTurnoJugador1) {
-      Juego.contAccion = 0;
-      Juego.contDescartes = 0;
-      _realizarAccionBot();
-    }
+@override
+Widget build(BuildContext context) {
+  if (!Juego.esTurnoJugador1) {
+    Juego.contAccion = 0;
+    Juego.contDescartes = 0;
+    _realizarAccionBot();
+  }
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Container(
-              color: Colors.black,
+  return Scaffold(
+    body: Stack(
+      children: [
+        Positioned.fill(
+          child: Container(
+            color: Colors.black,
+          ),
+        ),
+        Positioned.fill(
+          child: Opacity(
+            opacity: 0.5,
+            child: Image.asset(
+              'assets/images/fondo_disease.png',
+              fit: BoxFit.cover,
             ),
           ),
-          Positioned.fill(
-            child: Opacity(
-              opacity: 0.5,
-              child: Image.asset(
-                'assets/images/fondo_disease.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SafeArea(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            mazoDeCartas(cartasJugador, baraja, descartes),
-                            SizedBox(width: 215),
-                            FloatingActionButton(
-                              onPressed: _mostrarDialogoSalida,
-                              backgroundColor: Colors.purple,
-                              child:
-                                  Icon(Icons.exit_to_app, color: Colors.black),
+        ),
+        SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          mazoDeCartas(cartasJugador, baraja, descartes),
+                          SizedBox(width: 215),
+                          FloatingActionButton(
+                            onPressed: _mostrarDialogoSalida,
+                            backgroundColor: Colors.purple,
+                            child:
+                                Icon(Icons.exit_to_app, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      // Rectángulo curvo con el nombre del oponente
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.purpleAccent.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: Offset(2, 2),
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        // Rectángulo curvo con el nombre del oponente
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.purpleAccent.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.5),
-                                blurRadius: 5,
-                                offset: Offset(2, 2),
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            nombreOponente,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        child: Text(
+                          nombreOponente,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10),
-                        _construirFilaCartas(cartasOponente, false, false),
-                        _construirFilaCartas(
-                            cartasOponenteOrganos, false, true),
-                        SizedBox(height: 180),
-                        _construirFilaCartas(cartasJugadorOrganos, true, true),
-                        _construirFilaCartas(cartasJugador, true, false),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 10),
+                      _construirFilaCartas(cartasOponente, false, false),
+                      _construirFilaCartas(
+                          cartasOponenteOrganos, false, true),
+                      SizedBox(height: 180),
+                      _construirFilaCartas(cartasJugadorOrganos, true, true),
+                      _construirFilaCartas(cartasJugador, true, false),
+                    ],
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
 
   Widget mazoDeCartas(
       List<Carta> cartasJugador, Baraja baraja, List<Carta> descartes) {

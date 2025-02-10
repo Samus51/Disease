@@ -4,7 +4,7 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-28:/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\880c0aab828e9f324837f98d6e1c549f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\880c0aab828e9f324837f98d6e1c549f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,257,356,459,565,672,785",
-                        "endColumns": "97,103,98,102,105,106,112,100",
-                        "endOffsets": "148,252,351,454,560,667,780,881"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,27",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,257,356,459,565,672,3070",
-                        "endColumns": "97,103,98,102,105,106,112,100",
-                        "endOffsets": "148,252,351,454,560,667,780,3166"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\7abdca29119920473aa5363856cafe60\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\7abdca29119920473aa5363856cafe60\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,6 +35,23 @@
                         "startOffsets": "785,896,1072,1207,1311,1479,1608,1732,1974,2134,2244,2409,2540,2698,2855,2916,2985",
                         "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
                         "endOffsets": "891,1067,1202,1306,1474,1603,1727,1837,2129,2239,2404,2535,2693,2850,2911,2980,3065"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,257,356,459,565,672,785",
+                        "endColumns": "97,103,98,102,105,106,112,100",
+                        "endOffsets": "148,252,351,454,560,667,780,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,27",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,257,356,459,565,672,3070",
+                        "endColumns": "97,103,98,102,105,106,112,100",
+                        "endOffsets": "148,252,351,454,560,667,780,3166"
                     }
                 }
             ]
@@ -60,7 +60,7 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-mergeReleaseResources-26:/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\880c0aab828e9f324837f98d6e1c549f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\880c0aab828e9f324837f98d6e1c549f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -77,24 +77,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,257,356,459,565,672,785",
-                        "endColumns": "97,103,98,102,105,106,112,100",
-                        "endOffsets": "148,252,351,454,560,667,780,881"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,27",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,257,356,459,565,672,3070",
-                        "endColumns": "97,103,98,102,105,106,112,100",
-                        "endOffsets": "148,252,351,454,560,667,780,3166"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\7abdca29119920473aa5363856cafe60\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\7abdca29119920473aa5363856cafe60\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -108,6 +91,23 @@
                         "startOffsets": "785,896,1072,1207,1311,1479,1608,1732,1974,2134,2244,2409,2540,2698,2855,2916,2985",
                         "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
                         "endOffsets": "891,1067,1202,1306,1474,1603,1727,1837,2129,2239,2404,2535,2693,2850,2911,2980,3065"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,257,356,459,565,672,785",
+                        "endColumns": "97,103,98,102,105,106,112,100",
+                        "endOffsets": "148,252,351,454,560,667,780,881"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,27",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,257,356,459,565,672,3070",
+                        "endColumns": "97,103,98,102,105,106,112,100",
+                        "endOffsets": "148,252,351,454,560,667,780,3166"
                     }
                 }
             ]

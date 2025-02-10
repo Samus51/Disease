@@ -4,24 +4,7 @@
             "outputFile": "com.example.disease.app-mergeReleaseResources-36:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,251,456,657,858,1065,1270,1482",
-                        "endColumns": "195,204,200,200,206,204,211,203",
-                        "endOffsets": "246,451,652,853,1060,1265,1477,1681"
-                    },
-                    "to": {
-                        "startLines": "4,5,6,7,8,9,10,15",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "486,682,887,1088,1289,1496,1701,2725",
-                        "endColumns": "195,204,200,200,206,204,211,203",
-                        "endOffsets": "677,882,1083,1284,1491,1696,1908,2924"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\3d966f293381d7ca40b4283e8e39eff4\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\3d966f293381d7ca40b4283e8e39eff4\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -31,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pc\\.gradle\\caches\\8.9\\transforms\\592275a5a137bb046fc59fb118f85359\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\592275a5a137bb046fc59fb118f85359\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -45,6 +28,23 @@
                         "startOffsets": "1913,2113,2312,2523",
                         "endColumns": "199,198,210,201",
                         "endOffsets": "2108,2307,2518,2720"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Alumnado2DAM\\.gradle\\caches\\8.9\\transforms\\12e6e5ce4f890b44b49e409042256d0c\\transformed\\core-1.13.1\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,251,456,657,858,1065,1270,1482",
+                        "endColumns": "195,204,200,200,206,204,211,203",
+                        "endOffsets": "246,451,652,853,1060,1265,1477,1681"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9,10,15",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "486,682,887,1088,1289,1496,1701,2725",
+                        "endColumns": "195,204,200,200,206,204,211,203",
+                        "endOffsets": "677,882,1083,1284,1491,1696,1908,2924"
                     }
                 }
             ]
